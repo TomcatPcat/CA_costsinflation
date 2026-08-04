@@ -65,6 +65,33 @@ find_sfs_panel <- function() {
   hit[[1]]
 }
 
+#' Resolve local SHS roots (optional; core NIG does not require SHS).
+#' Returns named list: ry2023, data_edm, cache (NA_character_ if missing).
+find_shs_paths <- function() {
+  root_parent <- dirname(PATHS$root)
+  pick_dir <- function(candidates) {
+    candidates <- candidates[nzchar(candidates)]
+    hit <- candidates[dir.exists(candidates)]
+    if (length(hit)) hit[[1]] else NA_character_
+  }
+  list(
+    ry2023 = pick_dir(c(
+      Sys.getenv("SHS_RY2023_PATH", unset = ""),
+      file.path(root_parent, "SHS", "RY2023"),
+      file.path(PATHS$raw, "shs", "RY2023")
+    )),
+    data_edm = pick_dir(c(
+      Sys.getenv("SHS_EDM_PATH", unset = ""),
+      file.path(root_parent, "dataSHS", "3508_SHS_EDM"),
+      file.path(PATHS$raw, "shs", "3508_SHS_EDM")
+    )),
+    cache = pick_dir(c(
+      file.path(root_parent, "SHS", "cache"),
+      file.path(PATHS$raw, "shs", "cache")
+    ))
+  )
+}
+
 na2zero <- function(x) {
   x[is.na(x)] <- 0
   x

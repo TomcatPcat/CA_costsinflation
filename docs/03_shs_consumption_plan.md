@@ -1,8 +1,21 @@
 # Plan: SHS consumption incidence alongside the SFS inflation-tax project
 
-**Status:** planning only (no analysis implementation yet)  
+**Status:** implemented (v1)  
 **Role in project:** optional appendix / complementary channel — core IG / IT / NIG remains SFS-only ([`02_canadian_barriers.md`](02_canadian_barriers.md)).  
 **Local data:** `../SHS/RY2023/` (2023 PUMF) and `../dataSHS/3508_SHS_EDM/` (historical + 2017/2019). Prior exploratory work lives in `../SHS/code/` and `../SHS/outputs/` (income–consumption / CC imputation); that is **not** the inflation-incidence appendix planned here.
+
+### Implementation notes / deviations from draft naming
+
+| Plan draft | Implemented | Reason |
+|------------|-------------|--------|
+| `code/08_shs_load.R` | `code/09_shs_load.R` | `08_demo_geo_breakdowns.R` already occupied 08 |
+| `code/09_shs_consumption_incidence.R` | `code/10_shs_consumption_incidence.R` | Numbering shift |
+| Keep SHS out of default `run_all.R` | Wired with graceful skip | User request; skips if SHS paths missing |
+| 2017 clothing `CL030` | Harmonized from `CL001` | 2017 diary uses `CL001` as clothing aggregate |
+| 2017 taxes `TX010` | Harmonized from `TX001` | 2017 diary naming |
+| 2017 Atlantic provinces | Prov code `14` (collapsed) | StatCan 2017 PUMF geography |
+
+Years successfully loaded in v1: **2017, 2019, 2023**. Outputs under `output/tables/shs_*` and `output/figures/shs_*`; micro extract `data/processed/shs_2017_2023.rds` (gitignored).
 
 ---
 
@@ -175,11 +188,11 @@ CPI inflation
 
 | Script | Purpose |
 |--------|---------|
-| `code/08_shs_load.R` | Resolve paths (`../SHS/RY2023`, `../dataSHS/...`); read 2017/2019/2023; harmonize names; attach age bands, tenure, region, income quintile; write `data/processed/shs_2017_2023.rds` (gitignored) |
-| `code/09_shs_consumption_incidence.R` | Weighted tables/figures for aggregates in §2–3; optional thin SFS juxtaposition pulls from existing `output/tables/` |
+| `code/09_shs_load.R` | Resolve paths (`../SHS/RY2023`, `../dataSHS/...`); read 2017/2019/2023; harmonize names; attach age bands, tenure, region, income quintile; write `data/processed/shs_2017_2023.rds` (gitignored) |
+| `code/10_shs_consumption_incidence.R` | Weighted tables/figures for aggregates in §2–3; thin SFS juxtaposition pulls from existing `output/tables/` |
 | `code/utils/shs_baskets.R` | Frozen basket definitions + region collapse + age-band maps |
-| `code/00_setup.R` | Add `find_shs_paths()` analogous to `find_sfs_panel()`; document in `data/raw/DATA_PATHS.md` |
-| `code/run_all.R` | **Do not** auto-source 08–09 in the core run (SHS optional); document `run_shs` snippet or flagged block |
+| `code/00_setup.R` | `find_shs_paths()` analogous to `find_sfs_panel()`; document in `data/raw/DATA_PATHS.md` |
+| `code/run_all.R` | Sources 09–10 after core SFS steps; **skips** if SHS roots missing or load errors |
 
 Reuse lessons from `../SHS/code/shs_income_consumption_analysis.py` (FWF colspecs, missing sentinel) but keep **this repo’s** analysis in R for consistency with SFS scripts.
 
@@ -191,18 +204,20 @@ Reuse lessons from `../SHS/code/shs_income_consumption_analysis.py` (FWF colspec
 - `shs_consumption_by_region.csv`
 - `shs_consumption_by_income_x_tenure.csv` (flagship proxy for “class”)
 - `shs_sfs_juxtaposition_2019_2023.csv` — SHS shares + SFS NIG/income for shared cells (tenure, age, region)
+- `shs_years_loaded.csv` — inventory of years successfully read
 
 ### 5.3 Figures (`output/figures/`)
 
 - Necessities and shelter shares of `TC001` by income quintile (facet year)
 - Shelter share and mortgage-payment/income by tenure
 - Side-by-side 2019/2023: SFS mean NIG/income vs SHS necessities share by tenure (two panels)
-- Optional: regional bar chart of shelter / `TC001`
+- Regional bar chart of shelter / `TC001`
 
 ### 5.4 Docs touch-ups (when implementing)
 
-- One paragraph in [`paper_notes.md`](paper_notes.md) pointing to SHS appendix results
-- Path note already sketched in [`02_canadian_barriers.md`](02_canadian_barriers.md) § Role of SHS — refresh after first tables exist
+- One paragraph in [`paper_notes.md`](paper_notes.md) pointing to SHS appendix results — **done**
+- Path note already sketched in [`02_canadian_barriers.md`](02_canadian_barriers.md) § Role of SHS — **refreshed**
+- Brief note in `paper/inflation_tax_canada.tex` that SHS is an additional contribution (recent years only) — **done**
 
 ### 5.5 Implementation order (when greenlit)
 
@@ -211,6 +226,8 @@ Reuse lessons from `../SHS/code/shs_income_consumption_analysis.py` (FWF colspec
 3. Grouping tables + figures (§5.2–5.3).
 4. SFS juxtaposition for 2019/2023 tenure/age/region.
 5. Stop. No CPI micro-reweighting or SFS–SHS statistical matching unless a follow-on asks for it.
+
+**v1 complete through step 5.**
 
 ---
 
@@ -238,8 +255,8 @@ This note is already a concrete enough build spec (years, variables, groupings, 
 
 ## 8. Decision checklist (for the user)
 
-- [ ] Accept Tier A years only (2017, 2019, 2023) for v1
-- [ ] Accept no CMA and no wealth quintiles; use income × tenure proxies
-- [ ] Freeze Necessities₀ = food + shelter + health
-- [ ] Keep SHS scripts optional (not in default `run_all.R`)
-- [ ] Proceed to implement `code/08`–`09` when ready (no further formal plan doc)
+- [x] Accept Tier A years only (2017, 2019, 2023) for v1
+- [x] Accept no CMA and no wealth quintiles; use income × tenure proxies
+- [x] Freeze Necessities₀ = food + shelter + health
+- [x] Keep SHS scripts optional (wired in `run_all.R` with graceful skip)
+- [x] Proceed to implement `code/09`–`10` (plan draft said 08–09; numbering adjusted)

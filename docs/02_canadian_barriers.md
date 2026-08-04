@@ -16,7 +16,7 @@
 | Vehicles | Wolff excludes; SFS reports vehicles | Exclude from `w_wolff` |
 | DB pensions | Wolff excludes; SFS has employer pension GC/TM | Exclude `pwarppg` / `pwarppt` from Wolff wealth |
 | RRSP / TFSA / RRIF | No asset-class mix inside accounts on SFS PUMF | **PBO imputation:** copy each household’s non-registered STK/BND/LIQ mix into registered totals (PBO, *The Tax-Free Savings Account*). Fallback 60/30/10 if non-reg financial assets = 0. Likely **understates** equity share in registered plans (esp. TFSAs) given tax-location incentives. |
-| Mutual funds | Need equity vs bond split | Baseline 60% equity / 40% bonds (sensitivity later) |
+| Mutual funds | Need equity vs bond split | Non-registered mutual funds are unpacked 60/40 (traditional balanced allocation); no industry AUM / ETF product detail in the write-up. |
 | Business equity | Available (`pwbuseq`) | Map to BUS |
 | Housing | Principal residence + other RE | Track separately; housing mortgage-rate channel in WP 29392 module, not in core IG |
 
@@ -58,11 +58,12 @@ Wolff’s US charts use a **30-year fixed-rate mortgage (FRM)** affordability sc
 
 ## Role of SHS
 
-The Survey of Household Spending is **not required** for core IG / IT / NIG (those need income + balance sheets from SFS). SHS is reserved for optional extensions:
+The Survey of Household Spending is **not required** for core IG / IT / NIG (those need income + balance sheets from SFS). An optional consumption-incidence appendix is implemented in `code/09_shs_load.R` and `code/10_shs_consumption_incidence.R` (see [`03_shs_consumption_plan.md`](03_shs_consumption_plan.md)):
 
-- Consumption baskets / inflation incidence by income
-- Mortgage payment and debt-service shares
-- Cross-checks on liquid spending vs liquid assets
+- Tier A years only (**2017, 2019, 2023**) — post-redesign; not spliced to 1997–2009 or to the full SFS 1999–2023 NIG history
+- Necessities₀ = food + shelter + health shares of `TC001`; income quintiles and income×tenure proxies (**not** wealth quintiles)
+- Same four analytic regions as SFS demo cuts; CMA unavailable on PUMF
+- Juxtaposition tables for 2019/2023 tenure/age/region place SHS basket shares next to SFS NIG/income (household vs EFAM units)
 
 ## Non-goals for the first pass
 

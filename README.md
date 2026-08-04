@@ -10,7 +10,7 @@ Working paper title: *Quantifying the inflation tax on Canadian households*.
 ## Repo layout
 
 ```
-code/           R scripts (run 00 → 08)
+code/           R scripts (run 00 → 08 core; optional 09–10 SHS)
 data/raw/       Local microdata (gitignored; see DATA_PATHS.md)
 data/external/  CPI, yields, and other macro CSVs (committed)
 data/processed/ Analysis extracts (gitignored)
@@ -37,6 +37,9 @@ source("code/05_inequality_effects.R")
 source("code/06_tables_figures.R")
 source("code/07_mortgage_affordability.R")
 source("code/08_demo_geo_breakdowns.R")
+# Optional SHS appendix (skips if local SHS paths missing):
+# source("code/09_shs_load.R")
+# source("code/10_shs_consumption_incidence.R")
 ```
 
 Or, with Rscript:
@@ -45,9 +48,13 @@ Or, with Rscript:
 "C:\Program Files\R\R-4.5.2\bin\Rscript.exe" code/run_all.R
 ```
 
+`run_all.R` runs the SFS core (`00`–`08`) then attempts SHS steps `09`–`10`, skipping gracefully if `../SHS/RY2023` / `../dataSHS/3508_SHS_EDM` are absent.
+
 Mortgage affordability: Wolff’s 30y FRM curve is kept as a benchmark and plotted next to Canadian 25y/30y amortization schedules (`code/07`). Tenure splits (mortgagor / free-and-clear / renter) are included. Short-term renewal risk and rate pass-through are deferred.
 
 Demographic / geographic NIG and portfolio cuts (`code/08`): age bands, tenure, province, StatCan region, and analytic regions (West Coast / Central / Oil Prairies / East Coast). CMA is not on the SFS EFAM PUMF.
+
+Optional SHS consumption incidence (`code/09`–`10`, plan in [`docs/03_shs_consumption_plan.md`](docs/03_shs_consumption_plan.md)): Tier A years 2017/2019/2023 only — necessities/shelter shares, income quintiles and income×tenure proxies (not wealth quintiles). Complements SFS NIG; does not extend the 1999–2023 balance-sheet history.
 ## Data policy
 
 Household-level SFS/SHS PUMF files are **not** committed. Only scripts, documentation, small external macro series, and aggregated `output/` tables/figures belong in git.
@@ -56,6 +63,7 @@ Household-level SFS/SHS PUMF files are **not** committed. Only scripts, document
 
 - [docs/01_wolff_methodology.md](docs/01_wolff_methodology.md) — Wolff’s accounting framework; **PBO registered-mix imputation**
 - [docs/02_canadian_barriers.md](docs/02_canadian_barriers.md) — SCF → SFS barriers
+- [docs/03_shs_consumption_plan.md](docs/03_shs_consumption_plan.md) — SHS consumption-incidence appendix (implemented)
 - [docs/paper_notes.md](docs/paper_notes.md) — findings and open issues
 
 Registered RRSP/TFSA/RRIF look-through follows the Parliamentary Budget Officer (*The Tax-Free Savings Account*): each household’s registered equity/bond/liquid shares match its non-registered SFS mix. This likely understates equity inside registered plans (especially TFSAs) given tax-location incentives.

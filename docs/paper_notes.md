@@ -8,6 +8,7 @@ Evolving findings from the SFS-based Wolff adaptation. Regenerate numbers with `
 - **Macro:** StatCan all-items CPI (live pull when available) + BoC-style GoC 10y and 5y mortgage rates in `data/external/macro_annual.csv`.
 - **Engine:** `IG − IT` (WP 31775) and period revaluation / Gini (WP 29392) in `code/04`–`05`.
 - **Registered mix:** PBO method — household non-registered STK/BND/LIQ shares applied to RRSP/RRIF/TFSA/other retirement totals (`code/03`). Likely understates equity inside registered plans (esp. TFSAs) due to tax-location incentives; see `docs/01_wolff_methodology.md`. Diagnostics: `output/tables/registered_mix_pbo_diagnostics.csv`.
+- **Mutual funds:** Keep traditional 60/40 equity/bond look-through (`SHARES$mf_equity = 0.60`); no further write-up on industry AUM or ETF products.
 
 ## Snapshot results (2023)
 
@@ -61,7 +62,7 @@ See [02_canadian_barriers.md](02_canadian_barriers.md). Most binding for interpr
 
 1. Sparse waves + low-rate floor assumptions.
 2. Registered-account mix (PBO non-registered imputation; equity share likely understated).
-3. Weak ultra-wealthy coverage.
+3. Weak ultra-wealthy coverage — see draft top-tail commentary in [04_top_tail_commentary.md](04_top_tail_commentary.md) (also in `paper/inflation_tax_canada.tex`, §Barriers).
 4. No full racial-gap series (`pvmfmie` incomplete historically).
 5. Mortgage institutions (Wolff 30y FRM vs CA short term / long amort) — benchmark + Canada curves; renewal risk / pass-through postponed.
 
@@ -85,14 +86,31 @@ Figures: `nig_by_age_latest.png`, `nig_by_tenure_latest.png`, `nig_by_geo_group_
 - **Province missing in 2005** on this panel (`dem_prov` all NA); `dem_region` still present. Analytic `geo_group` uses a region fallback that year; Prairies cannot be split into Central (MB) vs Oil (AB/SK) → coded `Prairies unsplit`.
 - Territories not on PUMF. Age continuous missing in 2019/2023 (use grouped `agegrp`; 2023 has 7 bands, earlier years 14 five-year bands).
 
+## SHS consumption appendix (`code/09`–`10`)
+
+Complementary **cash-flow / basket** channel for recent years only (2017, 2019, 2023). Core NIG remains SFS-only. Scripts skip if local SHS paths are missing.
+
+| Cut | Proxy note | Key outputs |
+|-----|------------|-------------|
+| Income quintile | Within-year weighted on `HHTOTINC` — **not** wealth | `shs_consumption_by_income_quintile.csv` |
+| Tenure | Mortgage / free-clear / rent | `shs_consumption_by_tenure.csv` |
+| Income × tenure | Best stand-in for “balance-sheet class” | `shs_consumption_by_income_x_tenure.csv` |
+| Age (SHS bands) | `<30`…`75+` (coarser than SFS) | `shs_consumption_by_age.csv` |
+| Analytic region | BC \| ON+QC+MB \| AB+SK \| Atlantic | `shs_consumption_by_region.csv` |
+| SFS juxtaposition | 2019/2023 tenure, age, region | `shs_sfs_juxtaposition_2019_2023.csv` |
+
+**Snapshot (2023, weighted):** necessities share of `TC001` falls with income (Q1 ~59% vs Q5 ~51%); renters and low-income mortgagors show the highest necessities/shelter shares; mortgagors’ mean mortgage-payment/income ~32%. Free-and-clear owners have the *lowest* SHS necessities share but (in SFS) the *highest* NIG/income — stock vs flow channels diverge. BC has the highest regional shelter share; Atlantic the lowest among the four analytic regions.
+
+Caveats: household (SHS) ≠ EFAM (SFS); shelter concepts include SHS owner-cost definitions; 2017 clothing=`CL001` and taxes=`TX001` (harmonized names); no CMA; never claim wealth-quintile SHS results.
+
 ## Next iterations
 
 - Optional sensitivity: raise registered equity share above the PBO non-reg proxy (e.g. +10–20 pp for TFSAs) to bound the tax-location bias.
 - Bootstrap SEs for 2023.
-- Optional SHS consumption-incidence appendix.
 - Tighten top-tail presentation (P80–90 vs P99) for the paper’s main tables.
 - Compare Teranet house-price *actual* changes vs mortgage-affordability counterfactual.
 - Rate pass-through and short-term renewal-risk incidence (postponed).
+- Optional Phase 2: SHS–SFS margin matching for 2019/2023 (not in v1).
 
 ## Run artifacts
 

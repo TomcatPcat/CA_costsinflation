@@ -17,7 +17,7 @@
 \maketitle
 
 \begin{abstract}
-This paper adapts Edward Wolff's accounting framework for the ``inflation tax'' and the balance-sheet effects of interest rates to Canadian household microdata. Using the Survey of Financial Security (1999--2023), we construct Wolff-style marketable net worth, consolidate registered and mutual-fund holdings into equity and fixed-income buckets, and compute the inflation gain on wealth ($IG$), the inflation tax on income ($IT$), and the net inflation gain $NIG=IG-IT$ by wealth quintile. Preliminary results show that middle wealth quintiles typically record positive net inflation gains relative to income---driven by debt devaluation and, when real yields fall, asset revaluation---while the bottom quintile is more exposed to the income tax relative to thin balance sheets. We also report period revaluations and Gini counters in the spirit of Wolff's interest-rate paper. Canadian barriers include sparse survey waves, limited top-tail coverage, incomplete race/ethnicity fields, and mortgage-market institutions that differ from the U.S.\ 30-year fixed-rate market.
+This paper adapts Edward Wolff's accounting framework for the ``inflation tax'' and the balance-sheet effects of interest rates to Canadian household microdata. Using the Survey of Financial Security (1999--2023), we construct Wolff-style marketable net worth, consolidate registered and mutual-fund holdings into equity and fixed-income buckets, and compute the inflation gain on wealth ($IG$), the inflation tax on income ($IT$), and the net inflation gain $NIG=IG-IT$ by wealth quintile. Preliminary results show that middle wealth quintiles typically record positive net inflation gains relative to income---driven by debt devaluation and, when real yields fall, asset revaluation---while the bottom quintile is more exposed to the income tax relative to thin balance sheets. We also report period revaluations and Gini counters in the spirit of Wolff's interest-rate paper. As an additional contribution, we study the consumption side with the Survey of Household Spending for recent years only (2017, 2019, 2023), documenting necessities and shelter shares by income, tenure, and region as a cash-flow complement to the SFS balance-sheet $NIG$---not a 1999--2023 parallel series. Canadian barriers include sparse survey waves, limited top-tail coverage, incomplete race/ethnicity fields, and mortgage-market institutions that differ from the U.S.\ 30-year fixed-rate market.
 \end{abstract}
 
 \section{Introduction}
@@ -36,7 +36,7 @@ IG &= \Delta STK + \Delta BUS + \Delta BND - LIQ\cdot INF + DBT\cdot INF,\\
 IT &= INC\cdot INF,\\
 NIG &= IG - IT.
 \end{align}
-Wealth is marketable net worth excluding vehicles and defined-benefit pension wealth. Because the SFS reports registered-account \emph{totals} without asset-class detail, we follow the Parliamentary Budget Officer's TFSA methodology and set each household's RRSP/RRIF/TFSA look-through mix equal to its non-registered financial mix in the SFS.\footnote{Office of the Parliamentary Budget Officer, \emph{The Tax-Free Savings Account} (Ottawa): ``TFSA portfolio composition is assumed to be identical to those observed in non-registered investment accounts of the Survey of Financial Security.'' We apply the same rule to RRSP, RRIF, and other retirement balances. Tax-efficient asset location implies this likely \emph{understates} the equity share inside registered plans---especially TFSAs---so stock-channel inflation gains are conservative on that margin.}
+Wealth is marketable net worth excluding vehicles and defined-benefit pension wealth. Non-registered mutual funds are allocated 60 percent equity and 40 percent bonds. Because the SFS reports registered-account \emph{totals} without asset-class detail, we follow the Parliamentary Budget Officer's TFSA methodology and set each household's RRSP/RRIF/TFSA look-through mix equal to its non-registered financial mix in the SFS.\footnote{Office of the Parliamentary Budget Officer, \emph{The Tax-Free Savings Account} (Ottawa): ``TFSA portfolio composition is assumed to be identical to those observed in non-registered investment accounts of the Survey of Financial Security.'' We apply the same rule to RRSP, RRIF, and other retirement balances. Tax-efficient asset location implies this likely \emph{understates} the equity share inside registered plans---especially TFSAs---so stock-channel inflation gains are conservative on that margin.}
 
 \subsection{Interest rates and inequality (Wolff 2021)}
 
@@ -70,15 +70,33 @@ We retain Wolff's 30-year FRM affordability schedule as a benchmark and present 
 
 \section{Barriers and limitations}
 
-Key barriers relative to Wolff's SCF setting include: (i) only six survey years; (ii) no SCF-style high-income oversample; (iii) incomplete race/ethnicity measures on the PUMF; (iv) need to impute equity/bond splits inside registered accounts; (v) Canadian fixed-term mortgages rather than U.S.\ 30-year FRMs. The Survey of Household Spending is reserved for optional consumption-incidence extensions and is not required for core $NIG$.
+Key barriers relative to Wolff's SCF setting include: (i) only six survey years; (ii) no SCF-style high-income oversample; (iii) incomplete race/ethnicity measures on the PUMF; (iv) need to impute equity/bond splits inside registered accounts; (v) Canadian fixed-term mortgages rather than U.S.\ 30-year FRMs. Core $NIG$ remains SFS-only. As an additional contribution we append a recent-window consumption lens from the Survey of Household Spending (2017--2023 only): necessities and shelter shares of current consumption by income quintile, tenure, and analytic region, with income$\times$tenure proxies in place of wealth quintiles (unavailable on SHS). SHS and SFS units differ (household vs.\ economic family) and the post-2010 SHS redesign precludes splicing to the full SFS history.
+
+\subsection{Measurement of the top of the wealth distribution}
+
+Unlike the U.S.\ Survey of Consumer Finances, the Canadian Survey of Financial Security lacks a high-income list sample and, on the public-use file, is subject to top-coding. As a result, this paper cannot speak reliably about the ultra-wealthy in the sense of Wolff's SCF analyses. Independent work that corrects for under-coverage at the extreme upper tail confirms that raw SFS top shares are too low, while also placing Canadian concentration well below U.S.\ levels. Using the income capitalization method, Hempel (2025) estimates a top 1\% wealth share of about 19.3\% in 2022---roughly three to five percentage points above unadjusted SFS figures---along a path from 16.2\% in 1990 to a peak of 21.3\% in 2008 and then roughly 17.5--19.3\% through 2022. The cumulative rise of 3.1 percentage points over 1990--2022 is less than half the increase observed in the United States and France over a similar period, and the Canadian level remains substantially below U.S.\ estimates in the neighbourhood of 30--37\%.\footnote{Hempel (2025); U.S.\ comparisons draw on Saez and Zucman (2016) and Batty et al.\ (2022) as reported therein.} The Parliamentary Budget Officer's 2025 High-net-worth Families Database (HFD), which combines the SFS with Pareto interpolation and rich lists, implies an even larger correction at the very top: a 2023 top 1\% share of 23.8\% versus 11.0\% in the SFS alone.\footnote{Dong (2025). The SFS--HFD gap narrows sharply below the 80th percentile; the SFS is designed to support representative net-worth estimates roughly up to the top 5\% of the distribution.} Hempel's capitalization series lies between raw SFS and PBO HFD levels; the remaining discrepancy with the Pareto-based HFD is concentrated in the top 0.1\% (Hempel, 2025).
+
+For the inflation-tax accounting in this paper, these findings have a clear implication. We prefer cuts that the SFS can support---wealth quintiles and, where a finer upper cut is useful, the P80--90 band---rather than P99 or other ultra-top cells. The top quintile (Q5) remains fragile for interpretation of large $NIG$/income ratios. We do not reweight or append synthetic top-tail observations to the SFS PUMF; external Hempel and PBO estimates are used only to bound inference. More importantly for net inflation gain ($NIG$), Canadian wealth concentration has not risen in the U.S.\ manner over recent decades, so any equity- or business-revaluation channel concentrated at the top is operating against a more muted concentration backdrop than in Wolff's U.S.\ setting.
 
 \section{Next steps}
 
-Refine registered-account allocation sensitivities; add bootstrap inference for 2023; report P80--90 rather than P99 as the preferred ``upper middle / affluent'' cut; optionally append SHS spending results; and complete the full working-paper text.
+Refine registered-account allocation sensitivities; add bootstrap inference for 2023; report P80--90 rather than P99 as the preferred ``upper middle / affluent'' cut; integrate SHS consumption figures into the paper body or appendix; and complete the full working-paper text.
 
 \section*{References}
 
+\noindent Batty, M., Bricker, J., Briggs, J., Friedman, S., Nemschoff, D., Nielsen, E., Sommer, K., and Henriques Volz, A.\ (2022). The Distributional Financial Accounts of the United States. In R.\ Chetty et al.\ (eds.), \emph{Measuring Distribution and Mobility of Income and Wealth}. University of Chicago Press.
+
+\medskip
+\noindent Dong, M.\ (2025). Estimating the Top Tail of the Family Wealth Distribution in Canada -- 2025 Update. Office of the Parliamentary Budget Officer, RP-2526-009-S.
+
+\medskip
+\noindent Hempel, A.\ (2025). Wealth Inequality in Canada from 1990--2022: Evidence from the Capitalization Method. Available at \url{https://hempeleconomics.com/publication/hempel-wealth-inequality-2025/}.
+
+\medskip
 \noindent Office of the Parliamentary Budget Officer. The Tax-Free Savings Account. Ottawa.
+
+\medskip
+\noindent Saez, E., and Zucman, G.\ (2016). Wealth Inequality in the United States since 1913: Evidence from Capitalized Income Tax Data. \emph{Quarterly Journal of Economics}, 131(2), 519--578.
 
 \medskip
 \noindent Wolff, E.\ N.\ (2021). Inflation, Interest, and the Secular Rise in Wealth Inequality in the U.S.: Is the Fed Responsible? NBER Working Paper 29392.

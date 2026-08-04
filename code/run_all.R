@@ -27,4 +27,26 @@ source("code/06_tables_figures.R")
 source("code/07_mortgage_affordability.R")
 source("code/08_demo_geo_breakdowns.R")
 
+# Optional SHS consumption-incidence appendix (Tier A: 2017/2019/2023).
+# Skips gracefully when local SHS PUMF paths are unavailable.
+run_shs <- TRUE
+if (isTRUE(run_shs)) {
+  shs_paths <- find_shs_paths()
+  shs_available <- isTRUE(dir.exists(shs_paths$ry2023)) || isTRUE(dir.exists(shs_paths$data_edm))
+  if (!shs_available) {
+    message("=== Skipping SHS steps (no ../SHS/RY2023 or ../dataSHS/3508_SHS_EDM) ===")
+  } else {
+    message("=== SHS consumption incidence (optional) ===")
+    tryCatch(
+      {
+        source("code/09_shs_load.R")
+        source("code/10_shs_consumption_incidence.R")
+      },
+      error = function(e) {
+        message("SHS steps failed (continuing): ", conditionMessage(e))
+      }
+    )
+  }
+}
+
 message("=== Done. See output/tables and output/figures ===")
