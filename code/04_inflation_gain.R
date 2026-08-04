@@ -94,14 +94,13 @@ for (i in seq_len(nrow(periods))) {
   r_r1 <- as.numeric(pr$real1)
 
   # Rate-path revaluation (29392/31775 hybrid): change in real discount rate
-  # plus inflation wedge on liq/debt over the full period
-  use_consol <- is.finite(r_r0) && is.finite(r_r1)
-  r0e <- max(r_r0, 0.005)
-  r1e <- max(r_r1, 0.005)
+  # plus inflation wedge on liq/debt over the full period.
+  # consol_reval: ratio when both real rates > floor; else duration (avoids
+  # dual-floor zeroing the equity channel, e.g. 2012–2016).
   base <- base %>%
     dplyr::mutate(
-      d_stk = if (use_consol) STK * (r0e / r1e - 1) else duration_reval(STK, r_r1 - r_r0, pmax(r_r0, 0.01), duration = 20),
-      d_bus = if (use_consol) BUS * (r0e / r1e - 1) else duration_reval(BUS, r_r1 - r_r0, pmax(r_r0, 0.01), duration = 20),
+      d_stk = consol_reval(STK, r_r0, r_r1, r_floor = 0.005, duration = 20),
+      d_bus = consol_reval(BUS, r_r0, r_r1, r_floor = 0.005, duration = 20),
       # Bonds: modified duration ~ 8 years
       d_bnd = duration_reval(BND, r_n1 - r_n0, pmax(r_n0, 0.01), duration = 8),
       d_liq = -LIQ * infl,

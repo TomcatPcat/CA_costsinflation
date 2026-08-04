@@ -24,6 +24,25 @@ duration_reval <- function(V, dr, r, duration) {
   V * scale
 }
 
+#' Consol equity/business revaluation along a real-rate path: V*(r0/r1 - 1).
+#'
+#' Flooring both rates at `r_floor` before the ratio (old behaviour) zeros the
+#' channel whenever r0 and r1 are both ≤ floor (e.g. Canada 2012→2016:
+#' real0≈0.33%, real1≈−0.32% → both map to 0.5% → r0e/r1e−1 = 0). Flooring
+#' only the end rate also inflates gains when r1 dips below the floor while r0
+#' stays above (2005→2012, 2019→2023). Use the consol ratio only when both
+#' rates are strictly above the floor; otherwise keep the observed Δr via
+#' duration approximation.
+consol_reval <- function(V, r0, r1, r_floor = 0.005, duration = 20) {
+  V <- na2zero(V)
+  r0 <- as.numeric(r0)
+  r1 <- as.numeric(r1)
+  if (!is.finite(r0) || !is.finite(r1) || r0 <= r_floor || r1 <= r_floor) {
+    return(duration_reval(V, r1 - r0, pmax(r0, r_floor), duration))
+  }
+  V * (r0 / r1 - 1)
+}
+
 #' Mortgage affordability house-price factor
 #' Payment on loan L at annual rate m, amort A years, monthly compounding.
 #' @param amort_years Amortization length (Wolff US FRM: 30; Canada baseline: 25)

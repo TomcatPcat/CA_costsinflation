@@ -48,6 +48,10 @@ Patterns:
 - **2016–2019:** real rates *rose* (negative equity revaluation) while inflation was mild → NIG turns negative for several quintiles — a useful contrast to Wolff’s long US disinflation/rate-decline era.
 - Debt devaluation is the most robust equalizing / middle-class channel; equity/business terms dominate means at the top.
 
+### Accounting note: real-rate floor and 2012–2016
+
+Near-zero 2012–2016 equity/business revaluation was a **bug**, not an economic feature. Raw real GoC10 rates were `real0≈0.33%` and `real1≈−0.32%`; both were floored to 0.5% before the consol ratio `V*(r0/r1−1)`, so STK/BUS contributions were exactly zero. Mild cumulative inflation (~5.9%) and a small nominal yield move (Δgoc10≈−62bp) do legitimately shrink IT, debt/liq, and bond terms, but they do not justify wiping the equity channel. Fix (`consol_reval` in `code/utils/accounting.R`): use the consol ratio only when both real rates exceed the 0.5% floor; otherwise apply the duration approximation so the observed Δr is preserved. Same helper is used in `04`, `05`, and `08`. Side effect: 2005–2012 and 2019–2023 equity gains shrink vs the old path, which had inflated consol ratios by flooring only the low end-rate.
+
 ## Inequality module (WP 29392-style)
 
 From `inequality_revaluation_by_period.csv`:

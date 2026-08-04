@@ -51,13 +51,10 @@ for (i in seq_len(nrow(periods))) {
   hp_ratio <- tryCatch(house_price_ratio(m0, m1, 0.80, 25), error = function(e) 1)
   hp_ratio_wolff <- tryCatch(house_price_ratio(m0, m1, 0.80, 30), error = function(e) 1)
 
-  use_consol <- is.finite(r_r0) && is.finite(r_r1)
-  r0e <- max(r_r0, 0.005)
-  r1e <- max(r_r1, 0.005)
   base <- base %>%
     dplyr::mutate(
-      d_stk = if (use_consol) STK * (r0e / r1e - 1) else duration_reval(STK, r_r1 - r_r0, pmax(r_r0, 0.01), 20),
-      d_bus = if (use_consol) BUS * (r0e / r1e - 1) else duration_reval(BUS, r_r1 - r_r0, pmax(r_r0, 0.01), 20),
+      d_stk = consol_reval(STK, r_r0, r_r1, r_floor = 0.005, duration = 20),
+      d_bus = consol_reval(BUS, r_r0, r_r1, r_floor = 0.005, duration = 20),
       d_bnd = duration_reval(BND, r_n1 - r_n0, pmax(r_n0, 0.01), 8),
       d_liq = -LIQ * infl,
       d_dbt = DBT * infl,
