@@ -231,7 +231,11 @@ p_sens <- hp_long %>%
     title = "Period house-price affordability ratios under rate-path assumptions",
     subtitle = "hp_ratio = affordable price at end-of-period rate / start-of-period (portfolios fixed)",
     x = NULL, y = "House-price ratio", fill = NULL,
-    caption = "3y proxy = 5y conventional − 20bp. Stress = max(contract+2pp, 5.25%). Pass-through deferred."
+    caption = paste(
+      "T-IR4 / F-IR1 companion. Baseline = 5y conventional + 25y amort, LTV 0.80.",
+      "3y proxy = 5y − 20bp. Stress = max(contract+2pp, 5.25%).",
+      "Renewal-risk and loan-level pass-through deferred."
+    )
   ) +
   theme_paper() +
   ggplot2::theme(

@@ -55,13 +55,15 @@ Near-zero 2012–2016 equity/business revaluation was a **bug**, not an economic
 
 ## Inequality module (WP 29392-style)
 
-From `inequality_revaluation_by_period.csv`:
+From `inequality_revaluation_by_period.csv` and Interest-rates CSVs (`revaluation_*shares*`, `*_vs_actual_growth*`, `*_gini_shutoffs*`, `*_by_age_period*`):
 
-- Rate declines (1999–2012) produce large positive mean wealth revaluation; Gini sometimes **rises** when equity gains concentrate at the top (unlike Wolff’s US finding that monetary effects were strongly equalizing — worth exploring further with housing-only vs equity-only decompositions).
+- Rate declines (1999–2012) produce large positive mean wealth revaluation; Gini sometimes **rises** when equity gains concentrate at the top (unlike Wolff’s US finding that monetary effects were strongly equalizing). Shut-offs confirm equity+bus disequalizing vs housing/debt+liq equalizing.
 - 2016–2019 rate *increases* cut mean wealth and slightly lower Gini in the no-housing revaluation.
-- Housing affordability channel (Canadian 25y amort baseline) moves with mortgage rates; **Wolff 30y FRM curve retained as benchmark** and plotted alongside Canada (`output/figures/mortgage_affordability_wolff_vs_canada.png`). Sensitivities: 30y amort, 3y-rate proxy, stress rate.
-- Results split by **owner-mortgage / free-and-clear / renter** (`housing_channel_by_tenure_period.csv`).
-- **Not in scope yet:** distribution of homeowner risk from short Canadian terms; detailed rate pass-through to existing loans (postponed).
+- **2019–2023 with housing ≈ wipeout** of mean reval (−$613 vs +$41k no-housing); period shares undefined when \(|\Delta\)NW| is tiny.
+- Cumulative 1999–2023 = **sum of period $**; no-housing package ≈ **16%** of sum of actual mean advances (far below Wolff’s 72.6% US figure).
+- Housing affordability channel (Canadian 25y amort baseline) moves with mortgage rates; **Wolff 30y FRM curve retained as benchmark**. Sensitivities: 30y amort, 3y-rate proxy, stress rate.
+- Results split by **owner-mortgage / free-and-clear / renter**; age-band period incidence in `revaluation_by_age_period.csv`.
+- Paper § Interest rates drafted (table-heavy; cites Results figures). **Still deferred:** renewal-risk; loan-level pass-through; Teranet/NHPI vs `hp_ratio` (Phase C); bond-duration sensitivity.
 
 ## Barriers confirmed in practice
 

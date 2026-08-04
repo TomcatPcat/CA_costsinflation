@@ -76,7 +76,7 @@ Holding the latest-year balance sheets fixed, each line traces \(NIG\)/income as
 
 ## 3. Inequality and revaluation
 
-Tables: `revaluation_contributions_by_period.csv`, `reval_by_quintile_by_period.csv`, `inequality_revaluation_by_period.csv`, `inequality_baseline_by_year.csv`.
+Tables: `revaluation_contributions_by_period.csv`, `reval_by_quintile_by_period.csv`, `inequality_revaluation_by_period.csv`, `inequality_baseline_by_year.csv`. Interest-rate shares, Gini paths, and shut-offs are in [Section 4](#4-interest-rates-and-revaluation).
 
 ### Mean revaluation contributions by period
 
@@ -98,7 +98,31 @@ Same WP 29392-style stack as above, faceted by household income quintile with pa
 
 ---
 
-## 4. Mortgage affordability and housing channel
+## 4. Interest rates and revaluation
+
+Dedicated WP 29392-style interest-rate / balance-sheet gallery (paper Section `Interest rates and the household balance sheet`). Tables: `revaluation_contribution_shares_by_period.csv`, `revaluation_vs_actual_growth_by_period.csv`, `revaluation_gini_shutoffs_by_period.csv`, `revaluation_by_age_period.csv`. Plan: [`07_interest_rate_implementation_plan.md`](07_interest_rate_implementation_plan.md).
+
+### Channel shares of mean revaluation (F-IR2)
+
+![Channel shares of mean revaluation](../output/figures/revaluation_contribution_shares.png)
+
+Stacked **shares** of mean \(\Delta\)NW by channel, with and without the CA 25y housing mortgage-rate channel. Equity and business dominate positive non-housing packages in rate-decline spells; housing is a large positive share when mortgage rates fall and a large negative share when they rise. Near-zero denominator periods (e.g. 2019–2023 with housing wipeout) are omitted.
+
+### Gini path: actual vs revaluation (F-IR3)
+
+![Gini path actual vs reval](../output/figures/gini_path_actual_vs_reval.png)
+
+Actual SFS wealth Gini versus period revaluation counterfactuals (no housing / +CA 25y / +Wolff 30y). Each spell is independent—start-of-period portfolios only—so the chart compares level paths spell by spell rather than a chained compound portfolio.
+
+### Gini shut-offs by period (T-IR3 companion)
+
+![Gini shut-offs by period](../output/figures/gini_shutoffs_by_period.png)
+
+\(\Delta\)Gini under channel shut-offs (equity+business only, housing only, debt+liquid only, and full packages). Equity-plus-business alone is typically disequalizing when rates fall; housing and debt+liquid alone are usually equalizing.
+
+---
+
+## 5. Mortgage affordability and housing channel
 
 Tables: `mortgage_affordability_curves.csv`, `mortgage_affordability_wolff_points.csv`, `mortgage_hp_ratio_sensitivities.csv`, `housing_status_by_year.csv`, `housing_channel_by_tenure_period.csv`.
 
@@ -128,7 +152,7 @@ Mean dollar housing affordability and debt-devaluation contributions by tenure f
 
 ---
 
-## 5. Tenure, age, and geography
+## 6. Tenure, age, and geography
 
 Tables: `nig_portfolio_by_*_latest.csv`, `nig_by_period_age_band.csv`, `nig_by_period_geo_group.csv`, `nig_portfolio_by_age_tenure_latest.csv`, `geo_availability_note.csv`.
 
@@ -194,7 +218,7 @@ Same period design by age band. Life-cycle gaps can compress or widen depending 
 
 ---
 
-## 6. SHS consumption appendix
+## 7. SHS consumption appendix
 
 Tables: `shs_consumption_by_income_quintile.csv`, `shs_consumption_by_tenure.csv`, `shs_consumption_by_region.csv`, `shs_sfs_juxtaposition_2019_2023.csv`, `shs_years_loaded.csv`. Plan: [`03_shs_consumption_plan.md`](03_shs_consumption_plan.md).
 
@@ -237,6 +261,7 @@ Side-by-side: left = SFS balance-sheet \(NIG\)/income by tenure; right = SHS nec
 | Annual / period NIG | `nig_by_year.csv`, `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv`, `nig_by_quintile_1999_2023.csv` |
 | Sensitivity | `nig_inflation_sensitivity.csv` |
 | Inequality | `inequality_revaluation_by_period.csv`, `revaluation_contributions_by_period.csv`, `reval_by_quintile_by_period.csv` |
+| Interest rates (29392) | `revaluation_contribution_shares_by_period.csv`, `revaluation_vs_actual_growth_by_period.csv`, `revaluation_gini_shutoffs_by_period.csv`, `revaluation_by_age_period.csv` |
 | Mortgages / tenure | `mortgage_affordability_*.csv`, `housing_channel_by_tenure_period.csv`, `housing_status_by_year.csv` |
 | Demo / geo | `nig_portfolio_by_*`, `nig_by_period_*`, `geo_availability_note.csv` |
 | SHS | `shs_consumption_by_*.csv`, `shs_sfs_juxtaposition_2019_2023.csv` |

@@ -154,4 +154,175 @@ p6 <- reval %>%
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 30, hjust = 1))
 ggplot2::ggsave(file.path(PATHS$figures, "gini_change_revaluation.png"), p6, width = 7.5, height = 4.5, dpi = 150)
 
+# ---------------------------------------------------------------------------
+# F-IR2: Stacked contribution *shares* of mean ΔNW (Interest-rates section)
+# ---------------------------------------------------------------------------
+shares_file <- file.path(PATHS$tables, "revaluation_contribution_shares_by_period.csv")
+if (file.exists(shares_file)) {
+  shares <- readr::read_csv(shares_file, show_col_types = FALSE) %>%
+    dplyr::filter(!grepl("sum", period, ignore.case = TRUE)) %>%
+    dplyr::filter(is.na(share_unstable) | !share_unstable)
+
+  share_cols <- c(
+    "share_stk", "share_bus", "share_bnd", "share_liq", "share_dbt", "share_hous"
+  )
+  share_cols <- share_cols[share_cols %in% names(shares)]
+
+  shares_long <- shares %>%
+    tidyr::pivot_longer(
+      cols = dplyr::all_of(share_cols),
+      names_to = "component",
+      values_to = "share"
+    ) %>%
+    dplyr::filter(!is.na(share)) %>%
+    dplyr::mutate(
+      component = dplyr::recode(
+        component,
+        share_stk = "Stocks",
+        share_bus = "Business",
+        share_bnd = "Bonds",
+        share_liq = "Liquid assets",
+        share_dbt = "Debt devaluation",
+        share_hous = "Housing (mortgage-rate)"
+      ),
+      housing_toggle = dplyr::recode(
+        housing_toggle,
+        no_housing = "No housing",
+        ca25y_housing = "CA 25y housing"
+      ),
+      period = factor(period, levels = unique(period[order(year0)]))
+    )
+
+  p_ir2 <- shares_long %>%
+    ggplot2::ggplot(ggplot2::aes(x = period, y = share, fill = component)) +
+    ggplot2::geom_col() +
+    ggplot2::facet_wrap(~housing_toggle, ncol = 1) +
+    ggplot2::geom_hline(yintercept = 0, linewidth = 0.3) +
+    ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    ggplot2::labs(
+      title = "Channel shares of mean revaluation (by period)",
+      subtitle = "Share of mean ΔNW; portfolios fixed at period start. Near-zero denom periods omitted.",
+      x = NULL, y = "Share of mean ΔNW", fill = NULL,
+      caption = "F-IR2. Cumulative 1999–2023 uses sum of period $ (see tables)."
+    ) +
+    theme_paper() +
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_text(angle = 30, hjust = 1),
+      plot.caption = ggplot2::element_text(hjust = 0, size = 8)
+    )
+  ggplot2::ggsave(
+    file.path(PATHS$figures, "revaluation_contribution_shares.png"),
+    p_ir2, width = 9, height = 7, dpi = 150
+  )
+}
+
+# ---------------------------------------------------------------------------
+# F-IR3: Gini path — actual end-of-period vs revalued counterfactuals
+# ---------------------------------------------------------------------------
+# Path points: start Gini at year0 of first period, then for each spell end:
+# actual gini1, and counterfactual gini from applying reval to year0 portfolios.
+if (all(c("gini0", "gini1_actual", "gini_reval", "gini_reval_hous") %in% names(reval))) {
+  first <- reval %>% dplyr::arrange(year0) %>% dplyr::slice(1)
+  path_actual <- dplyr::bind_rows(
+    tibble::tibble(year = first$year0, series = "Actual SFS", gini = first$gini0),
+    reval %>%
+      dplyr::arrange(year0) %>%
+      dplyr::transmute(year = year1, series = "Actual SFS", gini = gini1_actual)
+  )
+  # Counterfactual: apply each spell's reval to that spell's start portfolios;
+  # plot end-of-spell counterfactual Gini at year1 (not a chained compound path).
+  path_cf <- reval %>%
+    dplyr::arrange(year0) %>%
+    dplyr::select(year1, gini_reval, gini_reval_hous, gini_reval_wolff) %>%
+    tidyr::pivot_longer(
+      cols = dplyr::starts_with("gini_reval"),
+      names_to = "series",
+      values_to = "gini"
+    ) %>%
+    dplyr::mutate(
+      year = year1,
+      series = dplyr::recode(
+        series,
+        gini_reval = "Reval (no housing)",
+        gini_reval_hous = "Reval (+ CA 25y housing)",
+        gini_reval_wolff = "Reval (+ Wolff 30y housing)"
+      )
+    ) %>%
+    dplyr::select(year, series, gini)
+
+  # Anchor counterfactuals at first year0 with actual gini0
+  path_cf_start <- tibble::tibble(
+    year = first$year0,
+    series = unique(path_cf$series),
+    gini = first$gini0
+  )
+  gini_path <- dplyr::bind_rows(path_actual, path_cf_start, path_cf) %>%
+    dplyr::distinct(year, series, .keep_all = TRUE) %>%
+    dplyr::arrange(series, year)
+
+  p_ir3 <- gini_path %>%
+    ggplot2::ggplot(ggplot2::aes(x = year, y = gini, colour = series, linetype = series)) +
+    ggplot2::geom_line(linewidth = 1) +
+    ggplot2::geom_point(size = 2) +
+    ggplot2::scale_x_continuous(breaks = sort(unique(gini_path$year))) +
+    ggplot2::labs(
+      title = "Wealth Gini: actual path vs period revaluation counterfactuals",
+      subtitle = "Counterfactual points = Gini after applying that spell's rate/inflation package to start-of-period portfolios",
+      x = NULL, y = "Wealth Gini", colour = NULL, linetype = NULL,
+      caption = "F-IR3. Not a chained compound portfolio path; each spell is independent."
+    ) +
+    theme_paper() +
+    ggplot2::theme(plot.caption = ggplot2::element_text(hjust = 0, size = 8))
+  ggplot2::ggsave(
+    file.path(PATHS$figures, "gini_path_actual_vs_reval.png"),
+    p_ir3, width = 9, height = 5.5, dpi = 150
+  )
+}
+
+# Optional: shut-off ΔGini bars (companion to T-IR3)
+shut_file <- file.path(PATHS$tables, "revaluation_gini_shutoffs_by_period.csv")
+if (file.exists(shut_file)) {
+  shut <- readr::read_csv(shut_file, show_col_types = FALSE)
+  shut_long <- shut %>%
+    tidyr::pivot_longer(
+      cols = dplyr::starts_with("d_gini_"),
+      names_to = "experiment",
+      values_to = "d_gini"
+    ) %>%
+    dplyr::mutate(
+      experiment = dplyr::recode(
+        experiment,
+        d_gini_no_hous = "Full (no housing)",
+        d_gini_ca25y = "Full + CA 25y housing",
+        d_gini_wolff30y = "Full + Wolff 30y",
+        d_gini_eq_bus = "Equity + business only",
+        d_gini_hous_only = "Housing only",
+        d_gini_debt_liq = "Debt + liquid only"
+      ),
+      experiment = factor(
+        experiment,
+        levels = c(
+          "Full (no housing)", "Full + CA 25y housing", "Full + Wolff 30y",
+          "Equity + business only", "Housing only", "Debt + liquid only"
+        )
+      ),
+      period = factor(period, levels = unique(period[order(year0)]))
+    )
+  p_shut <- shut_long %>%
+    ggplot2::ggplot(ggplot2::aes(x = period, y = d_gini, fill = experiment)) +
+    ggplot2::geom_col(position = ggplot2::position_dodge(width = 0.85), width = 0.8) +
+    ggplot2::geom_hline(yintercept = 0, linewidth = 0.3) +
+    ggplot2::labs(
+      title = "ΔGini under channel shut-off experiments",
+      subtitle = "Negative = equalizing; equity/business often disequalizing when rates fall",
+      x = NULL, y = expression(Delta~Gini), fill = NULL
+    ) +
+    theme_paper() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 30, hjust = 1))
+  ggplot2::ggsave(
+    file.path(PATHS$figures, "gini_shutoffs_by_period.png"),
+    p_shut, width = 10, height = 5.5, dpi = 150
+  )
+}
+
 message("Wrote figures to output/figures/")

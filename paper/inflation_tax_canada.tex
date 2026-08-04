@@ -338,24 +338,198 @@ Figure~\ref{fig:shs_sfs} places the two channels side by side for overlapping re
 \end{figure}
 
 \section{Interest rates and the household balance sheet}
-% Plan and checklist: docs/07_interest_rate_section_plan.md
-% Scope: Wolff WP 29392-style direct revaluation (real GoC yields, bond duration,
-% inflation on liquid assets/debt, optional mortgage-affordability housing).
-% Core NIG (above) continues to exclude the housing affordability term (WP 31775).
+\label{sec:interest_rates}
+% Research design: docs/07_interest_rate_section_plan.md
+% Implementation: docs/07_interest_rate_implementation_plan.md
+% Scope: Wolff WP 29392-style direct revaluation. Core NIG (above) excludes housing
+% affordability (WP 31775); this section toggles that channel on.
 
-% TODO: Summarize Wolff's channels (STK/BUS real-rate PV; bonds; nominal-mortgage
-%       housing affordability; LIQ/DBT inflation) and explicit exclusions
-%       (mortgage cash-flow as expenditure not NW; indirect GE effects).
-% TODO: Table --- period mean/median/Gini actual vs revalued (no housing / CA 25y /
-%       Wolff 30y amort); contribution shares of mean (median) change by channel.
-% TODO: Figure --- stacked channel contributions; Gini path actual vs counterfactual.
-% TODO: Canadian adaptations --- 5y conventional rates, 25y/30y amort, duration
-%       fallback at low real rates, SFS waves 1999--2023; tenure and age incidence.
-% TODO: Restate deferrals --- renewal-risk incidence and detailed pass-through remain
-%       out of scope; still deliver relative-role accounting and coded sensitivities
-%       (3y-rate proxy, stress rate). See docs/07_interest_rate_section_plan.md.
+This section asks how much of Canadian mean and median marketable net-worth change over SFS waves 1999--2023 is accounted for by \citeauthor{wolff2021inflation}'s \emph{direct} rate and inflation revaluation package, and whether those channels compressed or widened the wealth Gini. Results figures already preview the dollar stacks and $\Delta$Gini bars (Figures~\ref{fig:reval_contrib}--\ref{fig:gini_change}); here we emphasize contribution \emph{shares}, the share of actual wealth advances explained by revaluation, and channel shut-off experiments.
+
+\subsection{Channels and exclusions}
+
+Following \citet{wolff2021inflation}, start-of-period portfolios are held fixed within each inter-wave spell. Stocks and unincorporated business are revalued with the real Government of Canada 10-year yield (consol present-value logic, with a duration fallback when real rates are near or below a 0.5\% floor). Bonds use a duration approximation ($D\approx 8$) on the nominal GoC 10-year path. Liquid assets and debt are revalued with cumulative CPI inflation (real depreciation of cash; real debt relief). An optional housing channel maps the change in the \emph{nominal} five-year conventional mortgage rate into an affordable house-price ratio at fixed payment and 80\% LTV---baseline Canadian 25-year amortization, with a Wolff-style 30-year amortization hybrid on the same Canadian rates as a benchmark.
+
+As in Wolff, we exclude: (i)~mortgage payment cash-flow effects as an expenditure channel that does not change outstanding principal or net worth in the accounting; (ii)~indirect general-equilibrium effects of Bank of Canada policy on earnings, employment, or capital-gains expectations beyond the affordability schedule; (iii)~deposit-rate accumulation on liquid assets in the base case; and (iv)~portfolio rebalancing and new saving between survey dates. Renewal-risk incidence from short Canadian fixed terms and loan-level rate pass-through remain out of scope (Section~\ref{sec:barriers}).
+
+\subsection{Canadian rate and inflation backdrop}
+
+The SFS provides six waves (1999, 2005, 2012, 2016, 2019, 2023) and five long inter-wave spells---sparser than the SCF path in \citet{wolff2021inflation}. Macro paths for CPI, the GoC 10-year yield, and the five-year conventional mortgage rate appear in Figure~\ref{fig:macro_context}. Rate-decline spells (especially 1999--2012) generate large positive non-housing revaluations; 2016--2019 is the main episode of rising real yields and negative equity/business revaluation; 2019--2023 combines renewed non-housing gains with a sharp mortgage-rate rise that turns the housing affordability channel strongly negative.
+
+\subsection{Aggregate revaluation: mean, median, and Gini}
+
+Table~\ref{tab:ir1} reports, for each spell, the actual SFS change in mean and median marketable net worth alongside the counterfactual change from applying the revaluation package to start-of-period portfolios---without housing, with the Canadian 25-year housing channel, and with the Wolff 30-year amortization hybrid. Figure~\ref{fig:gini_path} plots the actual wealth Gini against period-by-period revalued counterfactual Ginis (each spell independent; not a chained compound portfolio path). Dollar stacks and period $\Delta$Gini bars in Results (Figures~\ref{fig:reval_contrib} and~\ref{fig:gini_change}) remain the visual preview.
+
+\begin{table}[ht]
+\centering
+\caption{Actual versus revalued mean and median wealth changes, and Gini, by inter-wave period (T-IR1).}
+\label{tab:ir1}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Period & Actual $\Delta$ mean & Reval (no hous.) & +CA 25y & +Wolff 30y & $\Delta$Gini (no hous.) & $\Delta$Gini (+CA 25y) \\
+\midrule
+1999--2005 & $+90{,}572$ & $+47{,}842$ & $+62{,}870$ & $+64{,}851$ & $+0.029$ & $+0.018$ \\
+2005--2012 & $+136{,}432$ & $+30{,}237$ & $+47{,}010$ & $+49{,}425$ & $+0.005$ & $-0.002$ \\
+2012--2016 & $+92{,}217$ & $+16{,}176$ & $+27{,}675$ & $+29{,}378$ & $+0.001$ & $-0.003$ \\
+2016--2019 & $+66{,}101$ & $-35{,}748$ & $-56{,}264$ & $-59{,}109$ & $-0.015$ & $-0.010$ \\
+2019--2023 & $+252{,}431$ & $+41{,}165$ & $-613$ & $-5{,}806$ & $+0.003$ & $+0.012$ \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.95\textwidth}
+\footnotesize Notes: CAD, start-of-period portfolios. Actual $\Delta$ = end-wave SFS mean minus start-wave mean. Revaluation applies GoC real/nominal yields, bond duration, CPI on liquid assets and debt, and (where noted) mortgage-affordability housing. Source: \texttt{inequality\_revaluation\_by\_period.csv}, \texttt{revaluation\_vs\_actual\_growth\_by\_period.csv}.
+\end{minipage}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{../output/figures/gini_path_actual_vs_reval.png}
+\caption{Wealth Gini: actual SFS path versus period revaluation counterfactuals (no housing; +CA 25y; +Wolff 30y amort). Each counterfactual point applies that spell's package to start-of-period portfolios independently (F-IR3), so the figure compares level paths spell by spell rather than a chained compound portfolio.}
+\label{fig:gini_path}
+\end{figure}
+
+Two patterns stand out relative to Wolff's U.S.\ narrative. First, in rate-decline spells the no-housing package often \emph{raises} the Canadian wealth Gini (e.g.\ $+0.029$ in 1999--2005), because equity and business gains concentrate at the top---the opposite of a strongly equalizing Fed story. Second, in 2019--2023 the Canadian 25-year housing channel nearly cancels the non-housing mean gain ($+\$41{,}165$ without housing versus $-\$613$ with housing): a mortgage-rate hike episode that dominates the with-housing mean while the actual SFS mean still rises by about $\$252{,}000$ from saving, new purchases, and realized price paths outside this accounting.
+
+Table~\ref{tab:ir_advance} translates these into Wolff-style shares of the \emph{actual} mean advance explained by revaluation. Period ratios are unstable when actual $\Delta$ and reval $\Delta$ have opposite signs (2016--2019). Cumulating by summing period mean dollars (not compounding a single 1999 portfolio), the no-housing package accounts for about 16\% of the sum of inter-wave mean advances over 1999--2023---far below Wolff's 72.6\% U.S.\ figure for 1983--2019, consistent with long SFS gaps and large roles for saving and market prices beyond fixed-portfolio revaluation.
+
+\begin{table}[ht]
+\centering
+\caption{Share of actual mean wealth advance explained by revaluation.}
+\label{tab:ir_advance}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Period & \% of advance (no hous.) & \% of advance (+CA 25y) & \% of advance (+Wolff 30y) \\
+\midrule
+1999--2005 & 53\% & 69\% & 72\% \\
+2005--2012 & 22\% & 34\% & 36\% \\
+2012--2016 & 18\% & 30\% & 32\% \\
+2016--2019 & $-54\%$ & $-85\%$ & $-89\%$ \\
+2019--2023 & 16\% & $\approx 0\%$ & $-2\%$ \\
+1999--2023 (sum of period \$) & 16\% & 13\% & 12\% \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.95\textwidth}
+\footnotesize Notes: Numerator = mean revaluation $\Delta$; denominator = actual SFS mean $\Delta$ over the spell. Cumulative row sums period dollars. Source: \texttt{revaluation\_vs\_actual\_growth\_by\_period.csv}.
+\end{minipage}
+\end{table}
+
+\subsection{Contribution decomposition}
+
+Table~\ref{tab:ir2} reports each channel's share of mean revaluation $\Delta$NW (Wolff Table~8 style). Figure~\ref{fig:reval_shares} stacks the same shares; dollar stacks remain in Figure~\ref{fig:reval_contrib}. Without housing, stocks and business typically account for most of the positive mean package in rate-decline spells; debt devaluation is a large positive equalizing term; liquid-asset depreciation offsets. With housing, the mortgage-rate channel is a substantial positive share in 1999--2016 and a large negative share when rates rise. For 2019--2023 with housing, mean $\Delta$NW is near zero, so period shares are undefined and omitted (the wipeout itself is the headline). Cumulatively (sum of period dollars, with housing), equity and business still dominate the positive package while housing contributes about $-24\%$ of the summed mean $\Delta$NW.
+
+\begin{table}[ht]
+\centering
+\caption{Contribution shares of mean revaluation $\Delta$NW by channel (T-IR2).}
+\label{tab:ir2}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+& Stocks & Business & Bonds & Liquid & Debt & Housing \\
+\midrule
+\multicolumn{7}{l}{\textit{No housing (shares of non-housing $\Delta$NW)}} \\
+1999--2005 & 46\% & 51\% & 3\% & $-9\%$ & 10\% & --- \\
+2005--2012 & 35\% & 51\% & 9\% & $-18\%$ & 23\% & --- \\
+2012--2016 & 42\% & 43\% & 7\% & $-23\%$ & 31\% & --- \\
+2016--2019 & 52\% & 50\% & 2\% & 9\% & $-13\%$ & --- \\
+2019--2023 & 50\% & 53\% & $-11\%$ & $-31\%$ & 39\% & --- \\
+1999--2023 (sum) & 41\% & 51\% & 0\% & $-30\%$ & 38\% & --- \\
+\midrule
+\multicolumn{7}{l}{\textit{With CA 25y housing (shares of total $\Delta$NW)}} \\
+1999--2005 & 35\% & 39\% & 2\% & $-7\%$ & 8\% & 24\% \\
+2005--2012 & 23\% & 33\% & 6\% & $-12\%$ & 15\% & 36\% \\
+2012--2016 & 24\% & 25\% & 4\% & $-13\%$ & 18\% & 42\% \\
+2016--2019 & 33\% & 32\% & 1\% & 6\% & $-8\%$ & 36\% \\
+2019--2023 & --- & --- & --- & --- & --- & --- \\
+1999--2023 (sum) & 51\% & 63\% & 0\% & $-37\%$ & 46\% & $-24\%$ \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.95\textwidth}
+\footnotesize Notes: Channel mean \$ / mean $\Delta$NW. 2019--2023 with housing omitted ($|\Delta$NW|${}<\$5{,}000$). Cumulative = sum of period channel \$ / sum of period mean $\Delta$NW. Source: \texttt{revaluation\_contribution\_shares\_by\_period.csv}.
+\end{minipage}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{../output/figures/revaluation_contribution_shares.png}
+\caption{Channel shares of mean revaluation $\Delta$NW by period, with and without the CA 25y housing channel (F-IR2). Equity and business dominate positive non-housing packages in rate-decline spells; housing is a large positive share when mortgage rates fall and a large negative share when they rise. Near-zero denominator periods (notably 2019--2023 with housing) are omitted.}
+\label{fig:reval_shares}
+\end{figure}
+
+Table~\ref{tab:ir3} and Figure~\ref{fig:gini_shutoffs} shut channels off to isolate inequality mechanisms. Equity-plus-business alone is typically \emph{disequalizing} when rates fall. Housing alone and debt-plus-liquid alone are usually equalizing. The full no-housing package often inherits the equity sign; adding the Canadian housing channel can flip mid-period $\Delta$Gini toward equalization (2005--2016) but raises the Gini in 2019--2023 when affordable prices fall.
+
+\begin{table}[ht]
+\centering
+\caption{$\Delta$Gini under channel shut-off experiments (T-IR3).}
+\label{tab:ir3}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Period & No hous. & +CA 25y & +Wolff 30y & Eq.+bus.\ only & Hous.\ only & Debt+liq.\ only \\
+\midrule
+1999--2005 & $+0.029$ & $+0.018$ & $+0.016$ & $+0.037$ & $-0.012$ & $-0.010$ \\
+2005--2012 & $+0.005$ & $-0.002$ & $-0.003$ & $+0.013$ & $-0.008$ & $-0.010$ \\
+2012--2016 & $+0.001$ & $-0.003$ & $-0.004$ & $+0.005$ & $-0.004$ & $-0.005$ \\
+2016--2019 & $-0.015$ & $-0.010$ & $-0.009$ & $-0.011$ & $+0.006$ & $-0.003$ \\
+2019--2023 & $+0.003$ & $+0.012$ & $+0.014$ & $+0.011$ & $+0.011$ & $-0.009$ \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.95\textwidth}
+\footnotesize Notes: Change in wealth Gini from applying only the listed channels to start-of-period wealth. Negative = equalizing. Source: \texttt{revaluation\_gini\_shutoffs\_by\_period.csv}.
+\end{minipage}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{../output/figures/gini_shutoffs_by_period.png}
+\caption{$\Delta$Gini under channel shut-off experiments by inter-wave period (T-IR3 companion). Equity-plus-business alone is typically disequalizing in rate-decline spells, while housing alone and debt-plus-liquid alone are usually equalizing; the full package inherits the equity sign unless housing flips mid-period $\Delta$Gini.}
+\label{fig:gini_shutoffs}
+\end{figure}
+
+\subsection{Canadian adaptations and sensitivities}
+
+Affordability curves (Figure~\ref{fig:mortgage_afford}) and period $hp\_ratio$ sensitivities (Figure~\ref{fig:hp_ratio}; Table~\ref{tab:ir4}) document the Canadian institutional layer: five-year conventional contract rates, 25-year baseline amortization, a 30-year amortization hybrid, a rough three-year-rate proxy ($-20$~bp), and an OSFI-style stress-rate path. These are robustness bands around the housing channel, not measured Teranet or NHPI price changes and not a pass-through model for existing loans.
+
+\begin{table}[ht]
+\centering
+\caption{Period house-price affordability ratios under alternative assumptions (T-IR4).}
+\label{tab:ir4}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Period & Wolff 30y & CA 25y & CA 30y & 3y proxy, 25y & Stress, 25y \\
+\midrule
+1999--2005 & 1.16 & 1.14 & 1.16 & 1.14 & 1.13 \\
+2005--2012 & 1.11 & 1.10 & 1.11 & 1.10 & 1.09 \\
+2012--2016 & 1.05 & 1.04 & 1.05 & 1.04 & 1.04 \\
+2016--2019 & 0.93 & 0.94 & 0.93 & 0.94 & 0.95 \\
+2019--2023 & 0.88 & 0.89 & 0.88 & 0.89 & 0.90 \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.95\textwidth}
+\footnotesize Notes: $hp\_ratio>1$ = easing of the affordable-price constraint. 3y proxy $=5$y conventional $-20$~bp. Stress $=\max(\mathrm{contract}+2\mathrm{pp},\,5.25\%)$. Source: \texttt{mortgage\_hp\_ratio\_sensitivities.csv}.
+\end{minipage}
+\end{table}
+
+\subsection{Tenure and age incidence}
+
+Housing and debt channels by tenure are already shown in Results (Figure~\ref{fig:housing_channel}): owners receive the house-price affordability shock; renters do not. Free-and-clear owners can still post large housing-channel dollars when the affordability index moves. Age-band period incidence (companion table \texttt{revaluation\_by\_age\_period.csv}) shows larger absolute equity/business and housing dollars in middle and older bands that hold more wealth; younger bands are more debt-intensive but have thinner portfolios. Income-quintile stacks in Figure~\ref{fig:reval_q} further locate equity concentration at the top of the income distribution.
+
+\subsection{Relative role versus $NIG$}
+
+The same macro rates and inflation enter both objects, but the accounting targets differ. Core $NIG=IG-IT$ (WP~31775) excludes the mortgage-affordability house-price term from inflation gain; this section is the WP~29392-style relative-role package with housing as an explicit toggle. Positive middle-quintile $NIG$/income and a sometimes-disequalizing equity revaluation can coexist: debt devaluation and the income tax shape the $NIG$ profile, while Gini responses here are driven by who holds equities, businesses, and housing.
+
+\subsection{Limits}
+
+This is an accounting decomposition of direct balance-sheet effects, not a causal identification of Bank of Canada policy. We do not model renewal payment shocks or loan-level pass-through. SFS waves are sparse; cumulative sums of period effects are transparent but are not a continuous FRM-economy compound. PUMF top-coding and the absence of a high-income oversample make mean shares and Gini levels fragile at the top; we emphasize shut-offs, medians, and quintile cuts rather than P99 claims. Race/ethnicity is not a primary stratification on the public file.
 
 \section{Barriers and limitations}
+\label{sec:barriers}
 
 Key barriers relative to Wolff's SCF setting include: (i) only six survey years; (ii) no SCF-style high-income oversample; (iii) incomplete race/ethnicity measures on the PUMF; (iv) need to impute equity/bond splits inside registered accounts; (v) Canadian fixed-term mortgages rather than U.S.\ 30-year FRMs. Core $NIG$ remains SFS-only. As an additional contribution we append a recent-window consumption lens from the Survey of Household Spending (2017--2023 only): necessities and shelter shares of current consumption by income quintile, tenure, and analytic region, with income$\times$tenure proxies in place of wealth quintiles (unavailable on SHS). SHS and SFS units differ (household vs.\ economic family) and the post-2010 SHS redesign precludes splicing to the full SFS history.
 
@@ -367,7 +541,7 @@ For the inflation-tax accounting in this paper, these findings have a clear impl
 
 \section{Next steps}
 
-Refine registered-account allocation sensitivities; add bootstrap inference for 2023; report P80--90 rather than P99 as the preferred ``upper middle / affluent'' cut; and complete the full working-paper text, including the interest-rate section stub above.
+Refine registered-account allocation sensitivities; add bootstrap inference for 2023; report P80--90 rather than P99 as the preferred ``upper middle / affluent'' cut; and continue polishing the working-paper text (interest-rate section tables and figures now drafted in Section~\ref{sec:interest_rates}).
 
 \bibliography{references}
 
