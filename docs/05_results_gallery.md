@@ -66,13 +66,19 @@ Holding the latest-year balance sheets fixed, each line traces \(NIG\)/income as
 
 ## 3. Inequality and revaluation
 
-Tables: `revaluation_contributions_by_period.csv`, `inequality_revaluation_by_period.csv`, `inequality_baseline_by_year.csv`.
+Tables: `revaluation_contributions_by_period.csv`, `reval_by_quintile_by_period.csv`, `inequality_revaluation_by_period.csv`, `inequality_baseline_by_year.csv`.
 
 ### Mean revaluation contributions by period
 
 ![Mean wealth revaluation contributions by period](../output/figures/revaluation_contributions.png)
 
 Stacked mean dollar contributions (stocks, business, bonds, liquid assets, debt devaluation, housing mortgage-rate channel) with portfolios fixed at period start (WP 29392-style). Positive stacks mean rising mean wealth from the inflation/rate path; composition shows which channel dominates. Equity/business often dominate means in rate-decline spells; debt devaluation is the more equalizing / middle-class channel in the broader story.
+
+### Revaluation contributions by income quintile
+
+![Revaluation contributions by income quintile](../output/figures/reval_by_quintile_panels.png)
+
+Same WP 29392-style stack as above, faceted by household income quintile with panels ordered Q5 (top) through Q1. Portfolios fixed at period start; components unchanged (stocks, business, bonds, liquid assets, debt devaluation, housing mortgage-rate channel). Companion table: `reval_by_quintile_by_period.csv`. Plan: [`08_reval_by_quintile_plan.md`](08_reval_by_quintile_plan.md).
 
 ### Change in wealth Gini from revaluation
 
@@ -220,7 +226,7 @@ Side-by-side: left = SFS balance-sheet \(NIG\)/income by tenure; right = SHS nec
 |-------|------------|
 | Annual / period NIG | `nig_by_year.csv`, `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv` |
 | Sensitivity | `nig_inflation_sensitivity.csv` |
-| Inequality | `inequality_revaluation_by_period.csv`, `revaluation_contributions_by_period.csv` |
+| Inequality | `inequality_revaluation_by_period.csv`, `revaluation_contributions_by_period.csv`, `reval_by_quintile_by_period.csv` |
 | Mortgages / tenure | `mortgage_affordability_*.csv`, `housing_channel_by_tenure_period.csv`, `housing_status_by_year.csv` |
 | Demo / geo | `nig_portfolio_by_*`, `nig_by_period_*`, `geo_availability_note.csv` |
 | SHS | `shs_consumption_by_*.csv`, `shs_sfs_juxtaposition_2019_2023.csv` |
