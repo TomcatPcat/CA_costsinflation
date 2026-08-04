@@ -28,7 +28,7 @@ Interpretation (first pass):
 
 - Middle quintiles (Q2–Q3) show **positive** net inflation gains relative to income, consistent with Wolff’s qualitative message that leveraged owners gain on the balance sheet.
 - Q1 has high leverage but low asset bases and incomes that make the **income tax** compete with debt devaluation; NIG/income is near zero / small.
-- Q5 NIG/income is large because equity/business PV wedges scale with holdings even after capping the consol wedge at 50% and flooring real rates at 0.5%. Treat top-tail magnitudes as **upper-bound / fragile** given PUMF top-coding and no high-income oversample.
+- **Q5 large NIG gains/losses are equity/business revaluation, not leverage.** In 2023, mean STK+BUS is ~$900k in Q5 vs ~$30k in Q3; STK+BUS ≈ 85% of Q5 IG. Q5 has the lowest debt/asset ratio (~0.08 vs ~0.28 for Q3), so debt devaluation is a small share of IG at the top and IT barely offsets IG. Middle/lower quintiles rely relatively more on debt devaluation. The 2016–2019 Q5 loss is the same STK/BUS channel with the sign flipped when real rates rose. Magnitudes remain **fragile** (PUMF top-coding; no high-income oversample; consol wedge capped / real rates floored).
 
 ## Period results (portfolios fixed at start of interval)
 

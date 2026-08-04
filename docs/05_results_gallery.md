@@ -24,7 +24,7 @@ Tables: `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv`, 
 
 ![Net inflation gain as a share of income (latest year)](../output/figures/nig_pct_income_latest.png)
 
-Headline snapshot: \(NIG\) as a share of mean income by wealth quintile in the latest SFS year. Bars above zero mean balance-sheet inflation gains exceed the income tax on that group’s mean income (ratio of means). Middle quintiles are typically strongly positive—qualitatively echoing Wolff’s “not a tax for the middle class”—while Q1 is near zero on thin balance sheets. Q5 ratios are large because equity/business PV wedges scale with holdings; interpret cautiously given top-coding.
+Headline snapshot: \(NIG\) as a share of mean income by wealth quintile in the latest SFS year. Bars above zero mean balance-sheet inflation gains exceed the income tax on that group’s mean income (ratio of means). Middle quintiles are typically strongly positive—qualitatively echoing Wolff’s “not a tax for the middle class”—while Q1 is near zero on thin balance sheets. Q5’s large ratios are primarily long-duration equity/business revaluation, not leverage: in 2023, mean STK+BUS is ~$900k (Q5) vs ~$30k (Q3) and ≈85% of Q5 \(IG\); debt/assets are lowest at the top (~0.08 vs ~0.28 for Q3), so debt devaluation is a small share of top \(IG\) and \(IT\) barely offsets it. Middle/lower quintiles rely more on debt devaluation; the 2016–2019 Q5 loss is the same STK/BUS channel with the sign flipped when real rates rose. Magnitudes are fragile (PUMF top-coding).
 
 ### Period \(NIG\) / income by quintile
 
