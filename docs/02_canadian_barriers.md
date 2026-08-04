@@ -15,7 +15,7 @@
 |-------|---------|------------------|
 | Vehicles | Wolff excludes; SFS reports vehicles | Exclude from `w_wolff` |
 | DB pensions | Wolff excludes; SFS has employer pension GC/TM | Exclude `pwarppg` / `pwarppt` from Wolff wealth |
-| RRSP / TFSA / RRIF | No direct IRA/401(k) analogue | Treat as DC-like; split into STK/BND/LIQ with transparent shares |
+| RRSP / TFSA / RRIF | No asset-class mix inside accounts on SFS PUMF | **PBO imputation:** copy each household’s non-registered STK/BND/LIQ mix into registered totals (PBO, *The Tax-Free Savings Account*). Fallback 60/30/10 if non-reg financial assets = 0. Likely **understates** equity share in registered plans (esp. TFSAs) given tax-location incentives. |
 | Mutual funds | Need equity vs bond split | Baseline 60% equity / 40% bonds (sensitivity later) |
 | Business equity | Available (`pwbuseq`) | Map to BUS |
 | Housing | Principal residence + other RE | Track separately; housing mortgage-rate channel in WP 29392 module, not in core IG |

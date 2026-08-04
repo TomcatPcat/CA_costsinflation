@@ -107,13 +107,16 @@ theme_paper <- function() {
 
 SURVEY_YEARS <- c(1999L, 2005L, 2012L, 2016L, 2019L, 2023L)
 
-# Baseline consolidation shares for registered / mutual funds
+# Mutual-fund look-through (non-registered funds and residual when needed).
+# Registered-account STK/BND/LIQ shares: PBO method in code/03_portfolio_map.R
+# (copy each household's non-registered mix). SHARES$reg_* are fallbacks only
+# when non-registered financial assets are zero/missing.
 SHARES <- list(
-  mf_equity   = 0.60,
-  mf_bond     = 0.40,
-  reg_equity  = 0.60,
-  reg_bond     = 0.30,
-  reg_liquid  = 0.10
+  mf_equity  = 0.60,
+  mf_bond    = 0.40,
+  reg_equity = 0.60,
+  reg_bond   = 0.30,
+  reg_liquid = 0.10
 )
 
 message("CA_costsinflation setup OK. ROOT = ", PATHS$root)

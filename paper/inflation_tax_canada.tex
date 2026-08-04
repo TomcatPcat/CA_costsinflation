@@ -36,7 +36,7 @@ IG &= \Delta STK + \Delta BUS + \Delta BND - LIQ\cdot INF + DBT\cdot INF,\\
 IT &= INC\cdot INF,\\
 NIG &= IG - IT.
 \end{align}
-Wealth is marketable net worth excluding vehicles and defined-benefit pension wealth. Registered accounts (RRSP, RRIF, TFSA) and mutual funds are split into equity, bonds, and liquid shares using transparent baseline weights.
+Wealth is marketable net worth excluding vehicles and defined-benefit pension wealth. Because the SFS reports registered-account \emph{totals} without asset-class detail, we follow the Parliamentary Budget Officer's TFSA methodology and set each household's RRSP/RRIF/TFSA look-through mix equal to its non-registered financial mix in the SFS.\footnote{Office of the Parliamentary Budget Officer, \emph{The Tax-Free Savings Account} (Ottawa): ``TFSA portfolio composition is assumed to be identical to those observed in non-registered investment accounts of the Survey of Financial Security.'' We apply the same rule to RRSP, RRIF, and other retirement balances. Tax-efficient asset location implies this likely \emph{understates} the equity share inside registered plans---especially TFSAs---so stock-channel inflation gains are conservative on that margin.}
 
 \subsection{Interest rates and inequality (Wolff 2021)}
 
@@ -76,6 +76,9 @@ Refine registered-account allocation sensitivities; add bootstrap inference for 
 
 \section*{References}
 
+\noindent Office of the Parliamentary Budget Officer. The Tax-Free Savings Account. Ottawa.
+
+\medskip
 \noindent Wolff, E.\ N.\ (2021). Inflation, Interest, and the Secular Rise in Wealth Inequality in the U.S.: Is the Fed Responsible? NBER Working Paper 29392.
 
 \medskip

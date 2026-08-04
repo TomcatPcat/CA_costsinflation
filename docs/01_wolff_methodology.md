@@ -9,6 +9,8 @@ This note summarizes Edward N. Wolff’s accounting framework as adapted in this
   - **Included:** housing and other real estate, businesses, stocks, bonds, deposits, DC pensions / IRAs (consolidated into underlying assets), valuables.
   - **Excluded:** vehicles (and other durables), defined-benefit pension wealth, Social Security wealth.
 - **Consolidated portfolio:** stocks and bonds held indirectly through mutual funds and DC accounts are allocated to equity vs fixed-income buckets.
+- **Canadian registered accounts (RRSP / RRIF / TFSA / other retirement):** SFS reports account *totals* only. Following the Parliamentary Budget Officer’s TFSA methodology, each household’s registered look-through mix (equity / bonds / liquid) is set equal to that household’s **non-registered** financial mix in the SFS (stocks, bonds, mutual funds unpacked 60/40, deposits). Households with no non-registered financial assets use a fixed fallback (60/30/10). See Office of the Parliamentary Budget Officer, *The Tax-Free Savings Account* (quote: “TFSA portfolio composition is assumed to be identical to those observed in non-registered investment accounts of the Survey of Financial Security”).
+- **Bias note:** Tax-efficient asset *location* encourages holding higher-growth / higher-risk equities in TFSAs (and often growth assets in RRSPs) while leaving taxable accounts more deposit- or Canadian-dividend-heavy. Copying the non-registered mix therefore likely **understates** the equity share inside registered accounts—**especially TFSAs**—and overstates their liquid/bond share relative to true holdings. Equity-sensitive IG terms are accordingly conservative on the stock channel.
 
 ## WP 31775 — Net inflation gain
 
@@ -85,7 +87,7 @@ Portfolios are held fixed at initial-period composition; savings and portfolio r
 |--------|------|
 | `code/01_build_sfs_panel.R` | Load SFS; Wolff-style wealth definition |
 | `code/02_macro_series.R` | Canadian CPI, GoC 10y, mortgage rates |
-| `code/03_portfolio_map.R` | Consolidated STK / BND / LIQ / BUS / DBT / HOUS |
+| `code/03_portfolio_map.R` | Consolidated STK / BND / LIQ / BUS / DBT / HOUS (PBO registered mix) |
 | `code/04_inflation_gain.R` | IG, IT, NIG by wealth class (31775) |
 | `code/05_inequality_effects.R` | Revaluation → mean/median/Gini (29392) |
 | `code/06_tables_figures.R` | Write `output/` |
@@ -94,3 +96,4 @@ Portfolios are held fixed at initial-period composition; savings and portfolio r
 
 - Wolff, E. N. (2023). NBER Working Paper 31775.
 - Wolff, E. N. (2021). NBER Working Paper 29392.
+- Office of the Parliamentary Budget Officer. *The Tax-Free Savings Account*. Ottawa. (Registered-account portfolio mix imputed from SFS non-registered holdings.)

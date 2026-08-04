@@ -49,9 +49,11 @@ Household-level SFS/SHS PUMF files are **not** committed. Only scripts, document
 
 ## Documentation
 
-- [docs/01_wolff_methodology.md](docs/01_wolff_methodology.md) — Wolff’s accounting framework
+- [docs/01_wolff_methodology.md](docs/01_wolff_methodology.md) — Wolff’s accounting framework; **PBO registered-mix imputation**
 - [docs/02_canadian_barriers.md](docs/02_canadian_barriers.md) — SCF → SFS barriers
 - [docs/paper_notes.md](docs/paper_notes.md) — findings and open issues
+
+Registered RRSP/TFSA/RRIF look-through follows the Parliamentary Budget Officer (*The Tax-Free Savings Account*): each household’s registered equity/bond/liquid shares match its non-registered SFS mix. This likely understates equity inside registered plans (especially TFSAs) given tax-location incentives.
 
 ## Licence note
 

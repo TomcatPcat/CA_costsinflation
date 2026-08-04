@@ -7,6 +7,7 @@ Evolving findings from the SFS-based Wolff adaptation. Regenerate numbers with `
 - **Microdata:** SFS EFAM PUMF panel 1999–2023 (`n = 72,295`), Wolff-style net worth (excl. vehicles & DB pensions).
 - **Macro:** StatCan all-items CPI (live pull when available) + BoC-style GoC 10y and 5y mortgage rates in `data/external/macro_annual.csv`.
 - **Engine:** `IG − IT` (WP 31775) and period revaluation / Gini (WP 29392) in `code/04`–`05`.
+- **Registered mix:** PBO method — household non-registered STK/BND/LIQ shares applied to RRSP/RRIF/TFSA/other retirement totals (`code/03`). Likely understates equity inside registered plans (esp. TFSAs) due to tax-location incentives; see `docs/01_wolff_methodology.md`. Diagnostics: `output/tables/registered_mix_pbo_diagnostics.csv`.
 
 ## Snapshot results (2023)
 
@@ -63,7 +64,7 @@ See [02_canadian_barriers.md](02_canadian_barriers.md). Most binding for interpr
 
 ## Next iterations
 
-- Sensitivity on registered equity share (40/60/80).
+- Optional sensitivity: raise registered equity share above the PBO non-reg proxy (e.g. +10–20 pp for TFSAs) to bound the tax-location bias.
 - Bootstrap SEs for 2023.
 - Optional SHS consumption-incidence appendix.
 - Tighten top-tail presentation (P80–90 vs P99) for the paper’s main tables.
