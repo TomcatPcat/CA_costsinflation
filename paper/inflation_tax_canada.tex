@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\onehalfspacing
+
+\title{Quantifying the Inflation Tax on Canadian Households}
+\author{Working paper draft\\[0.5em]
+\small Adaptation of Wolff (NBER WP 31775, 29392) to the Survey of Financial Security}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper adapts Edward Wolff's accounting framework for the ``inflation tax'' and the balance-sheet effects of interest rates to Canadian household microdata. Using the Survey of Financial Security (1999--2023), we construct Wolff-style marketable net worth, consolidate registered and mutual-fund holdings into equity and fixed-income buckets, and compute the inflation gain on wealth ($IG$), the inflation tax on income ($IT$), and the net inflation gain $NIG=IG-IT$ by wealth quintile. Preliminary results show that middle wealth quintiles typically record positive net inflation gains relative to income---driven by debt devaluation and, when real yields fall, asset revaluation---while the bottom quintile is more exposed to the income tax relative to thin balance sheets. We also report period revaluations and Gini counters in the spirit of Wolff's interest-rate paper. Canadian barriers include sparse survey waves, limited top-tail coverage, incomplete race/ethnicity fields, and mortgage-market institutions that differ from the U.S.\ 30-year fixed-rate market.
+\end{abstract}
+
+\section{Introduction}
+
+Public debate on inflation emphasizes real-income erosion. Wolff (2023) argues that this ``inflation tax'' on income must be paired with balance-sheet gains: inflation reduces the real burden of nominal debt and can raise the present value of claims discounted at real interest rates. The net inflation gain ($NIG$) can therefore be positive for leveraged middle-class households even when real incomes are squeezed.
+
+This draft implements that accounting for Canada. The empirical engine lives in the accompanying repository and reads the Canadian Survey of Financial Security (SFS) rather than the U.S.\ Survey of Consumer Finances (SCF).
+
+\section{Methodology}
+
+\subsection{Definitions (Wolff 2023)}
+
+Let $INF$ denote CPI inflation, $INC$ household income, $LIQ$ liquid assets, and $DBT$ debt. Stocks, business equity, and bonds are revalued using a Fisher wedge between nominal and real discount rates (with floors to avoid explosive $1/r$ terms in the low-rate Canadian sample). Then
+\begin{align}
+IG &= \Delta STK + \Delta BUS + \Delta BND - LIQ\cdot INF + DBT\cdot INF,\\
+IT &= INC\cdot INF,\\
+NIG &= IG - IT.
+\end{align}
+Wealth is marketable net worth excluding vehicles and defined-benefit pension wealth. Registered accounts (RRSP, RRIF, TFSA) and mutual funds are split into equity, bonds, and liquid shares using transparent baseline weights.
+
+\subsection{Interest rates and inequality (Wolff 2021)}
+
+Between SFS waves we hold start-of-period portfolios fixed and attribute wealth changes to movements in real GoC 10-year yields, bond duration effects, cumulative inflation on liquid assets and debt, and (separately) a Canadian mortgage-affordability house-price factor based on five-year terms and 25-year amortizations.
+
+\subsection{Data}
+
+SFS economic-family PUMF waves: 1999, 2005, 2012, 2016, 2019, 2023. Macro inputs: Statistics Canada CPI; Bank of Canada 10-year yields; conventional five-year mortgage rates. Survey weights ($pweight$) are used throughout.
+
+\section{Preliminary Canadian results}
+
+Figure~\ref{fig:nig2023} reports $NIG$ as a share of mean income by wealth quintile in 2023. Middle quintiles show substantial positive ratios; the bottom quintile is near zero; the top quintile's large ratio is sensitive to equity holdings and discount-rate assumptions and should be interpreted cautiously given PUMF top-coding.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\textwidth]{../output/figures/nig_pct_income_latest.png}
+\caption{Net inflation gain over mean income by wealth quintile, SFS 2023.}
+\label{fig:nig2023}
+\end{figure}
+
+Period decompositions (Figure~\ref{fig:period}) show that episodes of falling real yields (e.g.\ 2005--2012) amplify asset-side gains, while 2016--2019---when real yields rose---produces negative net gains for several classes despite positive debt devaluation.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{../output/figures/nig_period_by_quintile.png}
+\caption{Period $NIG$/income by wealth quintile.}
+\label{fig:period}
+\end{figure}
+
+\section{Barriers and limitations}
+
+Key barriers relative to Wolff's SCF setting include: (i) only six survey years; (ii) no SCF-style high-income oversample; (iii) incomplete race/ethnicity measures on the PUMF; (iv) need to impute equity/bond splits inside registered accounts; (v) Canadian fixed-term mortgages rather than U.S.\ 30-year FRMs. The Survey of Household Spending is reserved for optional consumption-incidence extensions and is not required for core $NIG$.
+
+\section{Next steps}
+
+Refine registered-account allocation sensitivities; add bootstrap inference for 2023; report P80--90 rather than P99 as the preferred ``upper middle / affluent'' cut; optionally append SHS spending results; and complete the full working-paper text.
+
+\section*{References}
+
+\noindent Wolff, E.\ N.\ (2021). Inflation, Interest, and the Secular Rise in Wealth Inequality in the U.S.: Is the Fed Responsible? NBER Working Paper 29392.
+
+\medskip
+\noindent Wolff, E.\ N.\ (2023). Is There Really an Inflation Tax? Not For the Middle Class and the Ultra-Wealthy. NBER Working Paper 31775.
+
+\end{document}

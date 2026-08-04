@@ -1,0 +1,36 @@
+# R / OS
+.Rhistory
+.RData
+.Rproj.user
+.DS_Store
+Thumbs.db
+*.Rproj
+
+# Local microdata (do not commit PUMF / household files)
+data/raw/**
+!data/raw/.gitkeep
+!data/raw/DATA_PATHS.md
+data/processed/**
+!data/processed/.gitkeep
+
+# Large bootstrap / survey weight dumps
+*BSWEIGHTS*
+*bsw*
+*.sas7bdat
+
+# Intermediate caches
+cache/
+*.parquet
+
+# LaTeX build
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+paper/_book/
+paper/_site/
+
+# Secrets / local path overrides
+.env
+local_config.R
