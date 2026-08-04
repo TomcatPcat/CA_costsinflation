@@ -116,6 +116,12 @@ sfs <- sfs %>%
     inc_it = dplyr::if_else(inc_net > 0, inc_net, pmax(inc_gross, 0)),
     owner = as.integer(dem_fam_tenure %in% c(1, "1", "Owned", "owned") |
                          (!is.na(w_hous_princ_res_val) & w_hous_princ_res_val > 0)),
+    # Tenure × mortgage status (for housing / interest-rate incidence)
+    housing_status = dplyr::case_when(
+      owner == 1 & debt_mort_princ_res_val > 0 ~ "owner_mortgage",
+      owner == 1 ~ "owner_free_clear",
+      TRUE ~ "renter"
+    ),
     id = dplyr::row_number()
   )
 
