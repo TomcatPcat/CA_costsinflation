@@ -13,10 +13,11 @@
 \bibliographystyle{abbrvnat}
 \setcitestyle{authoryear,round,citesep={;},aysep={,}}
 
-\title{Quantifying the Inflation Tax on Canadian Households}
+\title{Quantifying the Inflation Tax (or Rebate) on Canadian Households}
 \author{Working paper draft\\[0.5em]
-\small Adaptation of Wolff (NBER WP~31775,~29392) to the Survey of Financial Security}
+\small Adaptation of \citep{wolff2023inflationtax}'s Methodology to Canada }
 \date{\today}
+
 
 \begin{document}
 \maketitle
@@ -24,7 +25,9 @@
 % Editable short abstract (source of truth for revision): docs/abstract.md
 % Extended abstract: docs/extended_abstract.md
 \begin{abstract}
-Edward~N.\ Wolff introduced the net inflation gain identity $NIG=IG-IT$, pairing the inflation tax on income with balance-sheet gains from debt devaluation and asset revaluation \citep{wolff2023inflationtax,wolff2021inflation}. This paper adapts that accounting framework to Canada using the Survey of Financial Security (SFS, 1999--2023), with a complementary Survey of Household Spending (SHS) appendix for recent consumption incidence. We construct Wolff-style marketable net worth, consolidate registered and mutual-fund holdings into equity and fixed-income buckets (Parliamentary Budget Officer look-through for registered accounts; 60/40 for mutual funds), and compute $NIG$ by wealth quintile, tenure, age, and analytic region. Middle Canadian wealth quintiles typically record positive $NIG$ relative to income---qualitatively echoing Wolff's U.S.\ conclusion that inflation is ``not a tax'' for the middle class---while the bottom quintile is more exposed to the income tax on thin balance sheets. Unlike the U.S.\ Survey of Consumer Finances, the SFS cannot support reliable inference about the ultra-wealthy. Tenure patterns diverge from a pure leverage narrative: free-and-clear owners show higher $NIG$/income than mortgagors. Strong life-cycle and geographic gradients appear; the SHS appendix documents stock--flow divergence between balance-sheet $NIG$ and necessities shares of consumption.
+ \citep{wolff2023inflationtax} introduced the net inflation gain identity $NIG=IG-IT$, matching the well-known negative effect of inflation on income (`tax' = $IT$) against balance-sheet gains from debt devaluation and asset revaluation (=$IG$). Intuitively, things get more expensive, but your balance sheet may improve to mitigate this - or worsen it - depending on your different exposures.
+ 
+ This paper brings this accounting framework to Canada, to account for the relative impact of inflation on different households, using the Survey of Financial Security (SFS, 1999--2023). We construct equivalent metrics for marketable net worth and portfolios, compute net inflation gains ($NIG$) by wealth quintile, tenure, age, and region. Middle Canadian wealth quintiles typically record positive $NIG$ relative to income, qualitatively echoing Wolff's U.S.\ conclusion that inflation is ``not a tax'' for the middle class, but instead something of a rebate. Meanwhile the bottom quintile is more exposed to the income tax $IT$ deteriorating their earnings, due to small wealth holdings giving little opportunities to gain from nominal appreciation. While the SFS is not designed to represent the ultra-wealthy, we do find that the wealth benefit the most, due to high equity and business holdings. Leverage and debt deflation does not have an appreciable effect for this group, but is instead much more present for the middle classes. This pattern is not constant over time, with 2016-2019 offering a time when $NIG$ is negative, instead of the usual positive, for the richer groups. Tenure patterns show strong differences, with renters showing the lowest $NIG$ relative to income. However, the results diverge from a pure leverage narrative: free-and-clear owners show higher $NIG$/income than mortgagors, likely due to larger equity holdings and higher wealth generally.
 \end{abstract}
 
 \section{Introduction}
