@@ -2,6 +2,8 @@
 
 Evolving findings from the SFS-based Wolff adaptation. Regenerate numbers with `Rscript code/run_all.R`.
 
+Editable abstracts: [`abstract.md`](abstract.md) (short) and [`extended_abstract.md`](extended_abstract.md) (Canada vs Wolff detail); TeX short abstract synced in `paper/inflation_tax_canada.tex`.
+
 ## Setup
 
 - **Microdata:** SFS EFAM PUMF panel 1999–2023 (`n = 72,295`), Wolff-style net worth (excl. vehicles & DB pensions).
