@@ -47,7 +47,9 @@ for (i in seq_len(nrow(periods))) {
   r_r1 <- as.numeric(pr$real1)
   m0 <- as.numeric(pr$mort0)
   m1 <- as.numeric(pr$mort1)
-  hp_ratio <- tryCatch(house_price_ratio(m0, m1), error = function(e) 1)
+  # Housing affordability: baseline Canada 25y amort; also store Wolff 30y amort
+  hp_ratio <- tryCatch(house_price_ratio(m0, m1, 0.80, 25), error = function(e) 1)
+  hp_ratio_wolff <- tryCatch(house_price_ratio(m0, m1, 0.80, 30), error = function(e) 1)
 
   use_consol <- is.finite(r_r0) && is.finite(r_r1)
   r0e <- max(r_r0, 0.005)
@@ -59,8 +61,17 @@ for (i in seq_len(nrow(periods))) {
       d_bnd = duration_reval(BND, r_n1 - r_n0, pmax(r_n0, 0.01), 8),
       d_liq = -LIQ * infl,
       d_dbt = DBT * infl,
-      # Housing affordability channel (interest-rate, not IG)
-      d_hous = HOUS * (hp_ratio - 1),
+      # Housing affordability channel (interest-rate, not IG); owners only
+      d_hous = dplyr::if_else(
+        housing_status %in% c("owner_mortgage", "owner_free_clear"),
+        HOUS * (hp_ratio - 1),
+        0
+      ),
+      d_hous_wolff = dplyr::if_else(
+        housing_status %in% c("owner_mortgage", "owner_free_clear"),
+        HOUS * (hp_ratio_wolff - 1),
+        0
+      ),
       d_total_no_hous = d_stk + d_bus + d_bnd + d_liq + d_dbt,
       d_total = d_total_no_hous + d_hous,
       nw_reval = w_wolff + d_total_no_hous,
@@ -73,6 +84,7 @@ for (i in seq_len(nrow(periods))) {
     year0 = y0, year1 = y1,
     infl_cum = infl,
     hp_ratio = hp_ratio,
+    hp_ratio_wolff_30y = hp_ratio_wolff,
     mean_nw0 = wtd_mean(base$w_wolff, base$weight),
     median_nw0 = wtd_quantile(base$w_wolff, base$weight, 0.5),
     gini0 = wtd_gini(base$w_wolff, base$weight),
@@ -95,6 +107,7 @@ for (i in seq_len(nrow(periods))) {
     mean_d_liq = wtd_mean(base$d_liq, base$weight),
     mean_d_dbt = wtd_mean(base$d_dbt, base$weight),
     mean_d_hous = wtd_mean(base$d_hous, base$weight),
+    mean_d_hous_wolff = wtd_mean(base$d_hous_wolff, base$weight),
     mean_d_total_no_hous = wtd_mean(base$d_total_no_hous, base$weight),
     mean_d_total = wtd_mean(base$d_total, base$weight)
   )
