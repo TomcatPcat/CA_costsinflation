@@ -94,6 +94,7 @@ Portfolios are held fixed at initial-period composition; savings and portfolio r
 | `code/05_inequality_effects.R` | Revaluation → mean/median/Gini (29392) |
 | `code/06_tables_figures.R` | Write `output/` |
 | `code/07_mortgage_affordability.R` | Wolff vs Canada affordability; tenure splits |
+| `code/08_demo_geo_breakdowns.R` | Age / tenure / province / analytic-region NIG & wealth |
 
 ## References
 

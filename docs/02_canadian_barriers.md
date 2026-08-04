@@ -25,9 +25,10 @@
 | Concept | SFS PUMF | Response |
 |---------|----------|----------|
 | Race / ethnicity | Limited; `pvmfmie` (visible minority) mostly available in recent waves, heavy missingness in early years | Optional recent-wave cut only; no full 1999–2023 racial-gap replication |
-| Age | Yes (`pagemie` / `pagemieg`) | Primary substitute stratification |
-| Tenure | Yes (`pftenur`) | Owners vs renters (leverage channel) |
-| Province / region | Yes | Secondary cuts |
+| Age | Yes (`pagemie` / `pagemieg`) | Primary substitute stratification (`code/08`) |
+| Tenure | Yes (`pftenur` → `housing_status`) | Owners with mortgage / free-and-clear / renters (`code/07`–`08`) |
+| Province / region | Yes (`ppvres`, `pregion`) | Province + analytic regions in `code/08`; province missing in 2005 on this panel |
+| CMA / city | **No** on EFAM PUMF | Not available; do not attempt CMA cuts without RDC access |
 
 ## Macro series (Canadian analogues)
 

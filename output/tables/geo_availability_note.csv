@@ -1,0 +1,2 @@
+variable,available_on_pumf,note
+CMA / major city,FALSE,"No CMA/city identifier on SFS EFAM PUMF panel (checked colnames). Geography limited to province (ppvres/dem_prov) and StatCan region (pregion/dem_region: Atlantic, Quebec, Ontario, Prairies, BC). Province missing for all 2005 observations in this panel; custom geo_group uses dem_region fallback (Prairies left unsplit)."

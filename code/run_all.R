@@ -25,5 +25,6 @@ source("code/04_inflation_gain.R")
 source("code/05_inequality_effects.R")
 source("code/06_tables_figures.R")
 source("code/07_mortgage_affordability.R")
+source("code/08_demo_geo_breakdowns.R")
 
 message("=== Done. See output/tables and output/figures ===")

@@ -10,7 +10,7 @@ Working paper title: *Quantifying the inflation tax on Canadian households*.
 ## Repo layout
 
 ```
-code/           R scripts (run 00 → 06)
+code/           R scripts (run 00 → 08)
 data/raw/       Local microdata (gitignored; see DATA_PATHS.md)
 data/external/  CPI, yields, and other macro CSVs (committed)
 data/processed/ Analysis extracts (gitignored)
@@ -36,6 +36,7 @@ source("code/04_inflation_gain.R")
 source("code/05_inequality_effects.R")
 source("code/06_tables_figures.R")
 source("code/07_mortgage_affordability.R")
+source("code/08_demo_geo_breakdowns.R")
 ```
 
 Or, with Rscript:
@@ -45,6 +46,8 @@ Or, with Rscript:
 ```
 
 Mortgage affordability: Wolff’s 30y FRM curve is kept as a benchmark and plotted next to Canadian 25y/30y amortization schedules (`code/07`). Tenure splits (mortgagor / free-and-clear / renter) are included. Short-term renewal risk and rate pass-through are deferred.
+
+Demographic / geographic NIG and portfolio cuts (`code/08`): age bands, tenure, province, StatCan region, and analytic regions (West Coast / Central / Oil Prairies / East Coast). CMA is not on the SFS EFAM PUMF.
 ## Data policy
 
 Household-level SFS/SHS PUMF files are **not** committed. Only scripts, documentation, small external macro series, and aggregated `output/` tables/figures belong in git.

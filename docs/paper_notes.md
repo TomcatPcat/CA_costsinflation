@@ -65,6 +65,26 @@ See [02_canadian_barriers.md](02_canadian_barriers.md). Most binding for interpr
 4. No full racial-gap series (`pvmfmie` incomplete historically).
 5. Mortgage institutions (Wolff 30y FRM vs CA short term / long amort) — benchmark + Canada curves; renewal risk / pass-through postponed.
 
+## Demographic / geographic breakdowns (`code/08`)
+
+NIG, leverage, and wealth cuts by:
+
+| Cut | Source | Outputs (prefix) |
+|-----|--------|------------------|
+| Age band | `pagemie` / `pagemieg` → `<35`…`65+` | `nig_portfolio_by_age_band_*`, `nig_by_period_age_band` |
+| Tenure | `housing_status` (mortgage / free-clear / renter) | `nig_portfolio_by_housing_status_*` (+ age×tenure) |
+| Province | `ppvres` / `dem_prov` | `nig_portfolio_by_province_*` |
+| StatCan region | `pregion` (Atlantic, QC, ON, Prairies, BC) | `nig_portfolio_by_sfs_region_*` |
+| Analytic region | BC; ON/QC/MB; AB/SK; Atlantic | `nig_portfolio_by_geo_group_*`, period facets |
+
+Figures: `nig_by_age_latest.png`, `nig_by_tenure_latest.png`, `nig_by_geo_group_latest.png`, `nig_by_province_latest.png`, `nig_period_by_geo_group.png`, `nig_period_by_age.png`, `nig_by_age_tenure_latest.png`, `wealth_by_province_latest.png`, `wealth_by_geo_group_years.png`, `debt_asset_by_age_latest.png`.
+
+**Data limitations**
+
+- **CMA / major cities:** not on the SFS EFAM PUMF (no CMA column in the panel). Geography stops at province / StatCan region. See `geo_availability_note.csv`.
+- **Province missing in 2005** on this panel (`dem_prov` all NA); `dem_region` still present. Analytic `geo_group` uses a region fallback that year; Prairies cannot be split into Central (MB) vs Oil (AB/SK) → coded `Prairies unsplit`.
+- Territories not on PUMF. Age continuous missing in 2019/2023 (use grouped `agegrp`; 2023 has 7 bands, earlier years 14 five-year bands).
+
 ## Next iterations
 
 - Optional sensitivity: raise registered equity share above the PBO non-reg proxy (e.g. +10–20 pp for TFSAs) to bound the tax-location bias.
