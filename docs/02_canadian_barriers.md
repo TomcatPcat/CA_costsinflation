@@ -41,7 +41,19 @@
 
 ### Mortgage market difference (important)
 
-US analysis leans on **30-year fixed-rate** mortgages. Canadian mortgages are typically **short fixed terms (often 5 years)** with longer amortizations. The affordability → house-price channel must use Canadian term structure assumptions; do not copy US 30-year payment charts literally.
+Wolff’s US charts use a **30-year fixed-rate mortgage (FRM)** affordability schedule (20% down). Canadian mortgages typically use a **short fixed term (often 3–5 years)** with a longer **amortization** (25–30 years).
+
+**How we handle this**
+
+- **Retain Wolff’s 30y FRM affordability curve as a benchmark** and present **Canadian 25y/30y amortization** curves alongside (`code/07_mortgage_affordability.R`, figure `mortgage_affordability_wolff_vs_canada.png`).
+- Period sensitivities: CA 25y (baseline), CA 30y, 3y-rate proxy (−20 bp vs 5y), and OSFI-style stress rate; see `mortgage_hp_ratio_sensitivities.csv`.
+- Split results by **owner with mortgage / owner free-and-clear / renter**.
+- Core **IG / NIG** still excludes the house-price affordability term (debt devaluation only).
+
+**Explicitly out of scope (for now)**
+
+- We are **not** evaluating the distribution of **renewal / short-term contract risk** to homeowners (payment shock at term renewal).
+- **Pass-through** of policy and market rates into existing loan payments and renegotiation is **postponed** for later work.
 
 ## Role of SHS
 

@@ -72,6 +72,8 @@ Focus: **direct** balance-sheet effects of declining interest rates and inflatio
 | Liquid assets | Face value fixed; real value ↓ with inflation |
 | Debt | Face value fixed; real value ↓ with inflation (equalizing if leverage falls with wealth) |
 
+Affordability implementation: Wolff **30y FRM** curve kept as benchmark; Canadian **25y/30y amort** and stress/3y-rate sensitivities shown alongside (`code/07`). Housing-channel results split by mortgagor / free-and-clear / renter. Short-term **renewal risk** and detailed **rate pass-through** are deferred.
+
 Portfolios are held fixed at initial-period composition; savings and portfolio reshuffling are out of scope (direct effects only).
 
 ### Inequality metrics
@@ -91,6 +93,7 @@ Portfolios are held fixed at initial-period composition; savings and portfolio r
 | `code/04_inflation_gain.R` | IG, IT, NIG by wealth class (31775) |
 | `code/05_inequality_effects.R` | Revaluation → mean/median/Gini (29392) |
 | `code/06_tables_figures.R` | Write `output/` |
+| `code/07_mortgage_affordability.R` | Wolff vs Canada affordability; tenure splits |
 
 ## References
 

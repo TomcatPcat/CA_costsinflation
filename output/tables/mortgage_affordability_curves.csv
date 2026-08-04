@@ -1,0 +1,88 @@
+scenario,note,amort_years,rate,price_index
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.03,1.4991982356097653
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0325,1.4523410984484144
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.034999999999999996,1.4075837898844834
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0375,1.3648169808913737
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.04,1.3239375225233743
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.042499999999999996,1.2848480778933662
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.045,1.247456776888976
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0475,1.2116768921501717
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.05,1.177426534994265
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0525,1.1446283700048294
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.055,1.1132093471233016
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.057499999999999996,1.0831004501227657
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.06,1.054236460442735
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0625,1.0265557354172414
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.065,0.9999999999998181
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0675,0.9745141511170007
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.07,0.950046073888916
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.07250000000000001,0.926546468958077
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.075,0.9039686902387987
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0775,0.8822685924353211
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.08,0.8614043877199947
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.08249999999999999,0.841336511013833
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.08499999999999999,0.8220274933219117
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0875,0.8034418426423146
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.09,0.7855459319469447
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0925,0.7683078938522159
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.095,0.7516975215161438
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.0975,0.7356861754078637
+Wolff US 30y FRM (benchmark),Wolff WP chart analogue; 20% down,30,0.1,0.720246695582864
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.03,1.4238529145472056
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0325,1.3855626515965924
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.034999999999999996,1.3487322640407
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0375,1.3132973876499823
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.04,1.2791967323968492
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.042499999999999996,1.2463719279212455
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.045,1.2147673770765324
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0475,1.184330117069294
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.05,1.1550096878238039
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0525,1.1267580071713383
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.055,1.0995292524823528
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.057499999999999996,1.0732797484613914
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.06,1.0479678606794551
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0625,1.0235538946375526
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.065,0.9999999999998181
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0675,0.9772700797542712
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.07,0.9553297040312828
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.07250000000000001,0.9341460283327251
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.075,0.9136877159477079
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0775,0.8939248643231622
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.08,0.8748289351779022
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.08249999999999999,0.8563726881946422
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.08499999999999999,0.8385301180429451
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0875,0.8212763946414271
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.09,0.8045878063892815
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0925,0.7884417063136425
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.095,0.7728164608985025
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.0975,0.757691401506054
+Canada 25y amort (baseline),Payment set off 25y amort (typical CA),25,0.1,0.7430467782300185
+Canada 30y amort,Longer CA amortization sensitivity,30,0.03,1.4991982356097653
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0325,1.4523410984484144
+Canada 30y amort,Longer CA amortization sensitivity,30,0.034999999999999996,1.4075837898844834
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0375,1.3648169808913737
+Canada 30y amort,Longer CA amortization sensitivity,30,0.04,1.3239375225233743
+Canada 30y amort,Longer CA amortization sensitivity,30,0.042499999999999996,1.2848480778933662
+Canada 30y amort,Longer CA amortization sensitivity,30,0.045,1.247456776888976
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0475,1.2116768921501717
+Canada 30y amort,Longer CA amortization sensitivity,30,0.05,1.177426534994265
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0525,1.1446283700048294
+Canada 30y amort,Longer CA amortization sensitivity,30,0.055,1.1132093471233016
+Canada 30y amort,Longer CA amortization sensitivity,30,0.057499999999999996,1.0831004501227657
+Canada 30y amort,Longer CA amortization sensitivity,30,0.06,1.054236460442735
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0625,1.0265557354172414
+Canada 30y amort,Longer CA amortization sensitivity,30,0.065,0.9999999999998181
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0675,0.9745141511170007
+Canada 30y amort,Longer CA amortization sensitivity,30,0.07,0.950046073888916
+Canada 30y amort,Longer CA amortization sensitivity,30,0.07250000000000001,0.926546468958077
+Canada 30y amort,Longer CA amortization sensitivity,30,0.075,0.9039686902387987
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0775,0.8822685924353211
+Canada 30y amort,Longer CA amortization sensitivity,30,0.08,0.8614043877199947
+Canada 30y amort,Longer CA amortization sensitivity,30,0.08249999999999999,0.841336511013833
+Canada 30y amort,Longer CA amortization sensitivity,30,0.08499999999999999,0.8220274933219117
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0875,0.8034418426423146
+Canada 30y amort,Longer CA amortization sensitivity,30,0.09,0.7855459319469447
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0925,0.7683078938522159
+Canada 30y amort,Longer CA amortization sensitivity,30,0.095,0.7516975215161438
+Canada 30y amort,Longer CA amortization sensitivity,30,0.0975,0.7356861754078637
+Canada 30y amort,Longer CA amortization sensitivity,30,0.1,0.720246695582864

@@ -51,16 +51,19 @@ From `inequality_revaluation_by_period.csv`:
 
 - Rate declines (1999–2012) produce large positive mean wealth revaluation; Gini sometimes **rises** when equity gains concentrate at the top (unlike Wolff’s US finding that monetary effects were strongly equalizing — worth exploring further with housing-only vs equity-only decompositions).
 - 2016–2019 rate *increases* cut mean wealth and slightly lower Gini in the no-housing revaluation.
-- Housing affordability channel (Canadian 5y mortgage / 25y amort) moves with mortgage rates; included as a separate column, not in core IG.
+- Housing affordability channel (Canadian 25y amort baseline) moves with mortgage rates; **Wolff 30y FRM curve retained as benchmark** and plotted alongside Canada (`output/figures/mortgage_affordability_wolff_vs_canada.png`). Sensitivities: 30y amort, 3y-rate proxy, stress rate.
+- Results split by **owner-mortgage / free-and-clear / renter** (`housing_channel_by_tenure_period.csv`).
+- **Not in scope yet:** distribution of homeowner risk from short Canadian terms; detailed rate pass-through to existing loans (postponed).
 
 ## Barriers confirmed in practice
 
 See [02_canadian_barriers.md](02_canadian_barriers.md). Most binding for interpretation:
 
 1. Sparse waves + low-rate floor assumptions.
-2. Registered-account stock/bond splits (60/30/10 baseline).
+2. Registered-account mix (PBO non-registered imputation; equity share likely understated).
 3. Weak ultra-wealthy coverage.
 4. No full racial-gap series (`pvmfmie` incomplete historically).
+5. Mortgage institutions (Wolff 30y FRM vs CA short term / long amort) — benchmark + Canada curves; renewal risk / pass-through postponed.
 
 ## Next iterations
 
@@ -69,6 +72,7 @@ See [02_canadian_barriers.md](02_canadian_barriers.md). Most binding for interpr
 - Optional SHS consumption-incidence appendix.
 - Tighten top-tail presentation (P80–90 vs P99) for the paper’s main tables.
 - Compare Teranet house-price *actual* changes vs mortgage-affordability counterfactual.
+- Rate pass-through and short-term renewal-risk incidence (postponed).
 
 ## Run artifacts
 

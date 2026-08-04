@@ -1,0 +1,4 @@
+scenario,amort_years,rate_high,rate_low,price_ratio_low_vs_high
+Wolff US 30y FRM,30,0.065,0.045,1.247456776888976
+Canada 25y amort,25,0.065,0.045,1.2147673770765324
+Canada 30y amort,30,0.065,0.045,1.247456776888976

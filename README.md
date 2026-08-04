@@ -35,6 +35,7 @@ source("code/03_portfolio_map.R")
 source("code/04_inflation_gain.R")
 source("code/05_inequality_effects.R")
 source("code/06_tables_figures.R")
+source("code/07_mortgage_affordability.R")
 ```
 
 Or, with Rscript:
@@ -43,6 +44,7 @@ Or, with Rscript:
 "C:\Program Files\R\R-4.5.2\bin\Rscript.exe" code/run_all.R
 ```
 
+Mortgage affordability: Wolff’s 30y FRM curve is kept as a benchmark and plotted next to Canadian 25y/30y amortization schedules (`code/07`). Tenure splits (mortgagor / free-and-clear / renter) are included. Short-term renewal risk and rate pass-through are deferred.
 ## Data policy
 
 Household-level SFS/SHS PUMF files are **not** committed. Only scripts, documentation, small external macro series, and aggregated `output/` tables/figures belong in git.
