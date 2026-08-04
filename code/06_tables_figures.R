@@ -47,6 +47,34 @@ p2 <- nig_per %>%
   theme_paper()
 ggplot2::ggsave(file.path(PATHS$figures, "nig_period_by_quintile.png"), p2, width = 9, height = 6, dpi = 150)
 
+# Figure 2b: Full-span period NIG / income (1999–2023)
+nig_full_file <- file.path(PATHS$tables, "nig_by_quintile_1999_2023.csv")
+if (file.exists(nig_full_file)) {
+  nig_full <- readr::read_csv(nig_full_file, show_col_types = FALSE) %>%
+    dplyr::mutate(wealth_q = factor(wealth_q, levels = c("Q1", "Q2", "Q3", "Q4", "Q5")))
+  fy <- if ("nig_over_inc" %in% names(nig_full)) "nig_over_inc" else "mean_NIG_pct_inc"
+  p2b <- nig_full %>%
+    ggplot2::ggplot(ggplot2::aes(x = wealth_q, y = .data[[fy]])) +
+    ggplot2::geom_col(fill = "#1f4e79") +
+    ggplot2::geom_hline(yintercept = 0, linewidth = 0.3) +
+    ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    ggplot2::labs(
+      title = "Net inflation gain / income by wealth quintile (1999–2023)",
+      subtitle = "Portfolios fixed at 1999; cumulative CPI and endpoint rate wedge",
+      x = "Wealth quintile",
+      y = "NIG / mean income"
+    ) +
+    theme_paper()
+  ggplot2::ggsave(
+    file.path(PATHS$figures, "nig_pct_income_by_quintile_1999_2023.png"),
+    p2b, width = 7, height = 4.5, dpi = 150
+  )
+  ggplot2::ggsave(
+    file.path(PATHS$figures, "nig_pct_income_by_quintile_1999_2023.pdf"),
+    p2b, width = 7, height = 4.5
+  )
+}
+
 # Figure 3: Inflation sensitivity (latest year)
 sy <- if ("nig_over_inc" %in% names(nig_sens)) "nig_over_inc" else "mean_NIG_pct_inc"
 p3 <- nig_sens %>%

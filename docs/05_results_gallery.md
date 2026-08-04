@@ -36,7 +36,17 @@ Tables: `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv`, 
 
 ![Net inflation gain as a share of income (latest year)](../output/figures/nig_pct_income_latest.png)
 
+**Definition:** single-year snapshot on 2023 balance sheets using that year’s YoY CPI inflation (and contemporaneous rates) applied once—not cumulative \(NIG\) from 1999→2023, and not the 2019–2023 inter-wave spell.
+
 Headline snapshot: \(NIG\) as a share of mean income by wealth quintile in the latest SFS year. Bars above zero mean balance-sheet inflation gains exceed the income tax on that group’s mean income (ratio of means). Middle quintiles are typically strongly positive—qualitatively echoing Wolff’s “not a tax for the middle class”—while Q1 is near zero on thin balance sheets. Q5’s large ratios are primarily long-duration equity/business revaluation, not leverage: in 2023, mean STK+BUS is ~$900k (Q5) vs ~$30k (Q3) and ≈85% of Q5 \(IG\); debt/assets are lowest at the top (~0.08 vs ~0.28 for Q3), so debt devaluation is a small share of top \(IG\) and \(IT\) barely offsets it. Middle/lower quintiles rely more on debt devaluation; the 2016–2019 Q5 loss is the same STK/BUS channel with the sign flipped when real rates rose. Magnitudes are fragile (PUMF top-coding).
+
+### Full-span period \(NIG\) / income (1999–2023)
+
+Table: `nig_by_quintile_1999_2023.csv`. Figure: `nig_pct_income_by_quintile_1999_2023.png`.
+
+![Full-span NIG / income by wealth quintile, 1999–2023](../output/figures/nig_pct_income_by_quintile_1999_2023.png)
+
+Same Wolff period accounting as the inter-wave facets below, but over the entire SFS window: 1999 portfolios held fixed; cumulative CPI inflation and the 1999→2023 endpoint rate wedge. Complements the single-year 2023 snapshot above.
 
 ### Period \(NIG\) / income by quintile
 
@@ -224,7 +234,7 @@ Side-by-side: left = SFS balance-sheet \(NIG\)/income by tenure; right = SHS nec
 
 | Theme | Key tables |
 |-------|------------|
-| Annual / period NIG | `nig_by_year.csv`, `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv` |
+| Annual / period NIG | `nig_by_year.csv`, `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv`, `nig_by_quintile_1999_2023.csv` |
 | Sensitivity | `nig_inflation_sensitivity.csv` |
 | Inequality | `inequality_revaluation_by_period.csv`, `revaluation_contributions_by_period.csv`, `reval_by_quintile_by_period.csv` |
 | Mortgages / tenure | `mortgage_affordability_*.csv`, `housing_channel_by_tenure_period.csv`, `housing_status_by_year.csv` |

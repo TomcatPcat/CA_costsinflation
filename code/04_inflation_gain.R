@@ -135,6 +135,61 @@ for (i in seq_len(nrow(periods))) {
 nig_periods <- dplyr::bind_rows(period_nig_rows)
 readr::write_csv(nig_periods, file.path(PATHS$tables, "nig_by_period_wealth_quintile.csv"))
 
+# ---- Full-span period NIG (first → last SFS wave, e.g. 1999–2023) ----------
+# Same Wolff period accounting as inter-wave spells: portfolios fixed at year0;
+# cumulative CPI inflation and endpoint rate wedge over the whole sample.
+y0_full <- min(SURVEY_YEARS)
+y1_full <- max(SURVEY_YEARS)
+base_full <- sfs %>% dplyr::filter(year == y0_full)
+m0 <- macro %>% dplyr::filter(year == y0_full)
+m1 <- macro %>% dplyr::filter(year == y1_full)
+if (nrow(base_full) && nrow(m0) && nrow(m1)) {
+  infl_full <- as.numeric(m1$cpi[1] / m0$cpi[1] - 1)
+  r_n0_f <- as.numeric(m0$goc10[1] / 100)
+  r_r0_f <- as.numeric(m0$real_goc10[1])
+  r_n1_f <- as.numeric(m1$goc10[1] / 100)
+  r_r1_f <- as.numeric(m1$real_goc10[1])
+
+  nig_full <- base_full %>%
+    dplyr::mutate(
+      d_stk = consol_reval(STK, r_r0_f, r_r1_f, r_floor = 0.005, duration = 20),
+      d_bus = consol_reval(BUS, r_r0_f, r_r1_f, r_floor = 0.005, duration = 20),
+      d_bnd = duration_reval(BND, r_n1_f - r_n0_f, pmax(r_n0_f, 0.01), duration = 8),
+      d_liq = -LIQ * infl_full,
+      d_dbt = DBT * infl_full,
+      IG_per = d_stk + d_bus + d_bnd + d_liq + d_dbt,
+      IT_per = INC * infl_full,
+      NIG_per = IG_per - IT_per,
+      period = paste0(y0_full, "-", y1_full)
+    ) %>%
+    dplyr::group_by(period, wealth_q) %>%
+    dplyr::summarise(
+      year0 = y0_full, year1 = y1_full,
+      n = dplyr::n(),
+      infl_cum = infl_full,
+      mean_IG = wtd_mean(IG_per, weight),
+      mean_IT = wtd_mean(IT_per, weight),
+      mean_NIG = wtd_mean(NIG_per, weight),
+      mean_inc = wtd_mean(INC, weight),
+      nig_over_inc = mean_NIG / pmax(mean_inc, 1),
+      mean_d_stk = wtd_mean(d_stk, weight),
+      mean_d_bus = wtd_mean(d_bus, weight),
+      mean_d_bnd = wtd_mean(d_bnd, weight),
+      mean_d_liq = wtd_mean(d_liq, weight),
+      mean_d_dbt = wtd_mean(d_dbt, weight),
+      mean_nw0 = wtd_mean(w_wolff, weight),
+      .groups = "drop"
+    )
+
+  readr::write_csv(
+    nig_full,
+    file.path(PATHS$tables, "nig_by_quintile_1999_2023.csv")
+  )
+} else {
+  nig_full <- NULL
+  warning("Could not build full-span NIG (", y0_full, "-", y1_full, ").")
+}
+
 # ---- Inflation sensitivity (counterfactual constant annual INF) ------------
 # Use latest survey year portfolio; hold real income fixed; set r_real = r_nom - INF
 sens_year <- max(sfs$year, na.rm = TRUE)
