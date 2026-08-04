@@ -8,6 +8,7 @@ Editable abstracts: [`abstract.md`](abstract.md) (short) and [`extended_abstract
 
 - **Microdata:** SFS EFAM PUMF panel 1999–2023 (`n = 72,295`), Wolff-style net worth (excl. vehicles & DB pensions).
 - **Macro:** StatCan all-items CPI (live pull when available) + BoC-style GoC 10y and 5y mortgage rates in `data/external/macro_annual.csv`.
+- **Intro macro figure:** `code/11_macro_context_figure.R` builds annual policy rate, CPI inflation, housing/equity returns, and wage growth (~1998–present) → `data/external/macro_context_annual.csv` and `output/figures/macro_context_1998_present.png`. Sources: `data/external/MACRO_CONTEXT_SOURCES.md`. Wired early in `run_all.R` (after setup).
 - **Engine:** `IG − IT` (WP 31775) and period revaluation / Gini (WP 29392) in `code/04`–`05`.
 - **Registered mix:** PBO method — household non-registered STK/BND/LIQ shares applied to RRSP/RRIF/TFSA/other retirement totals (`code/03`). Likely understates equity inside registered plans (esp. TFSAs) due to tax-location incentives; see `docs/01_wolff_methodology.md`. Diagnostics: `output/tables/registered_mix_pbo_diagnostics.csv`.
 - **Mutual funds:** Keep traditional 60/40 equity/bond look-through (`SHARES$mf_equity = 0.60`); no further write-up on industry AUM or ETF products.

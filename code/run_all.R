@@ -18,6 +18,7 @@ message("=== CA_costsinflation pipeline ===")
 message("Working directory: ", getwd())
 
 source("code/00_setup.R")
+source("code/11_macro_context_figure.R")
 source("code/02_macro_series.R")
 source("code/01_build_sfs_panel.R")
 source("code/03_portfolio_map.R")

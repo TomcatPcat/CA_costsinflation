@@ -1,0 +1,6 @@
+policy_rate: BoC Valet STATIC_ATABLE_V39079 (target overnight; annual avg of monthly)
+cpi_inflation: StatCan 18-10-0005 all-items Canada; YoY % of annual-average CPI
+housing: FRED QCAN628BIS (BIS residential property prices, Canada); YoY % of annual-avg index
+equity: FRED SPASTT01CAM661N (OECD share prices, Canada); YoY % of annual-avg index
+wages: StatCan 14-10-0223 SEPH avg weekly earnings incl. OT, industrial aggregate excl. unclassified; YoY % of annual avg; early years from fallback_wage_growth.csv
+coverage: 1998–2025

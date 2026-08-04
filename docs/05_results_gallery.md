@@ -16,6 +16,18 @@ Edward N. Wolff’s net inflation gain identity \(NIG = IG - IT\) pairs an infla
 
 ---
 
+## 0. Macro context (introduction)
+
+Script: `code/11_macro_context_figure.R`. Table: `data/external/macro_context_annual.csv`. Sources: [`MACRO_CONTEXT_SOURCES.md`](../data/external/MACRO_CONTEXT_SOURCES.md).
+
+### Canadian rates, inflation, asset returns, and wages (~1998–present)
+
+![Canadian macro context 1998–present](../output/figures/macro_context_1998_present.png)
+
+Annual series for the paper’s introduction: Bank of Canada **target overnight rate** (policy rate; annual average), StatCan all-items CPI inflation, housing appreciation (BIS residential property prices via FRED, or NHPI fallback), S&P/TSX Composite **price** returns, and SEPH average weekly earnings growth. Dashed lines mark SFS survey years; grey bands approximate recessions (2008–09, 2020). Use this as backdrop only—household \(NIG\) is computed at SFS waves, not from these macro paths alone.
+
+---
+
 ## 1. NIG core (wealth quintiles)
 
 Tables: `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv`, `portfolio_by_wealth_quintile.csv`.
