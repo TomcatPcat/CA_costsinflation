@@ -30,6 +30,7 @@ source("code/13_annualized_nig.R")
 source("code/14_nig_alt_scalings.R")
 source("code/07_mortgage_affordability.R")
 source("code/08_demo_geo_breakdowns.R")
+source("code/15_nig_alt_scalings_all_cuts.R")
 
 # Optional SHS consumption-incidence appendix (Tier A: 2017/2019/2023).
 # Skips gracefully when local SHS PUMF paths are unavailable.

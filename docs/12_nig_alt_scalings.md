@@ -64,7 +64,8 @@ with \(T = \text{year1}-\text{year0}\). Applied to `nig_over_resources` and `nig
 
 ## Pipeline
 
-- Script: `code/14_nig_alt_scalings.R` (after `04` / `13`; wired in `run_all.R`).
+- Scripts: `code/14_nig_alt_scalings.R` (wealth quintiles; after `04` / `13`); `code/15_nig_alt_scalings_all_cuts.R` (tenure, age, age×tenure, geo, province, period-by-group, inflation sensitivity, annualized dodged). Both wired in `run_all.R`.
+- **Coverage:** resources / CoH twins now exist for every gallery \(NIG\)/income group-cut (quintile, tenure, age, age×tenure, analytic region, province, period age/geo, inflation sensitivity, and annualized companions). See [`05_results_gallery.md`](05_results_gallery.md).
 - NIG accounting unchanged (Wolff \(IG - IT\); period portfolios fixed at `year0`).
 
 ### Tables (`output/tables/`)
@@ -78,6 +79,9 @@ with \(T = \text{year1}-\text{year0}\). Applied to `nig_over_resources` and `nig
 | `nig_alt_scalings_by_period_wealth_quintile_annualized.csv` | Inter-wave, annualized |
 | `nig_alt_scalings_by_quintile_1999_2023_annualized.csv` | Full span, annualized |
 | `nig_alt_scalings_annualized_by_quintile.csv` | Inter-wave + full span |
+| `nig_alt_scalings_latest_{tenure,age,age_tenure,geo_group,province}.csv` | Latest-year demo/geo cuts |
+| `nig_alt_scalings_by_period_{age,geo_group}.csv` | Inter-wave age / geo |
+| `nig_alt_scalings_inflation_sensitivity.csv` | Counterfactual INF × quintile |
 
 ### Figures (`output/figures/`)
 
@@ -89,9 +93,12 @@ with \(T = \text{year1}-\text{year0}\). Applied to `nig_over_resources` and `nig
 | `nig_over_cash_on_hand_by_quintile_periods.{png,pdf}` | Inter-wave |
 | `nig_over_resources_by_quintile_1999_2023.{png,pdf}` | Full span |
 | `nig_over_cash_on_hand_by_quintile_1999_2023.{png,pdf}` | Full span |
-| `*_periods_annualized.*` / `*_1999_2023_annualized.*` | Annualized companions |
+| `*_periods_annualized.*` / `*_1999_2023_annualized.*` / `*_annualized_dodged.*` | Annualized companions |
+| `nig_over_{resources,cash_on_hand}_by_{tenure,age,age_tenure,geo_group,province}_latest.*` | Demo/geo latest |
+| `nig_over_{resources,cash_on_hand}_by_{age,geo_group}_periods.*` | Period facets |
+| `nig_inflation_sensitivity_{resources,cash_on_hand}.*` | Sensitivity |
 
-Layouts parallel the existing NIG/income charts in `06_tables_figures.R` / `13_annualized_nig.R`.
+Layouts parallel the existing NIG/income charts in `06_tables_figures.R` / `08_demo_geo_breakdowns.R` / `13_annualized_nig.R`.
 
 ## Reading guide
 
