@@ -26,6 +26,8 @@ source("code/04_inflation_gain.R")
 source("code/05_inequality_effects.R")
 source("code/06_tables_figures.R")
 source("code/12_reval_by_quintile.R")
+source("code/13_annualized_nig.R")
+source("code/14_nig_alt_scalings.R")
 source("code/07_mortgage_affordability.R")
 source("code/08_demo_geo_breakdowns.R")
 

@@ -54,6 +54,30 @@ Same Wolff period accounting as the inter-wave facets below, but over the entire
 
 Each facet is an inter-wave spell with portfolios held fixed at the start of the interval. Compare signs across periods: high-inflation / falling-rate spells (e.g. 1999–2005, 2019–2023) favour middle quintiles; 2016–2019 shows mild inflation with rising real rates, so \(NIG\) often turns negative. Read within-facet quintile gradients rather than comparing absolute levels across periods with very different cumulative CPI.
 
+### Annualized \(NIG\) / income (cross-spell comparable)
+
+Script: `code/13_annualized_nig.R`. Notes: [`09_annualized_nig_notes.md`](09_annualized_nig_notes.md). Tables: `nig_by_period_wealth_quintile_annualized.csv`, `nig_by_quintile_1999_2023_annualized.csv`, `nig_annualized_by_quintile.csv`.
+
+![Annualized period NIG / income by wealth quintile](../output/figures/nig_pct_income_by_quintile_periods_annualized.png)
+
+![Annualized full-span NIG / income, 1999–2023](../output/figures/nig_pct_income_by_quintile_1999_2023_annualized.png)
+
+Same period accounting as above, but \(NIG\)/income converted to a **per-year** rate: geometric \((1+x)^{1/T}-1\) with \(T=\text{year1}-\text{year0}\) (arithmetic \(x/T\) only if \(1+x\le 0\)). Use these panels—not the raw cumulative bars—when comparing short spells to long ones or to Wolff’s multi-decade windows.
+
+### Alternative scalings: \(NIG\) / resources and \(NIG\) / cash-on-hand
+
+Script: `code/14_nig_alt_scalings.R`. Notes: [`12_nig_alt_scalings.md`](12_nig_alt_scalings.md). Tables: `nig_alt_scalings_*.csv`.
+
+![NIG / resources by wealth quintile (latest)](../output/figures/nig_over_resources_by_quintile_latest.png)
+
+![NIG / cash-on-hand by wealth quintile (latest)](../output/figures/nig_over_cash_on_hand_by_quintile_latest.png)
+
+![Full-span NIG / resources, 1999–2023](../output/figures/nig_over_resources_by_quintile_1999_2023.png)
+
+![Full-span NIG / cash-on-hand, 1999–2023](../output/figures/nig_over_cash_on_hand_by_quintile_1999_2023.png)
+
+**Resources** = income + Wolff NW; **cash-on-hand** = income + LIQ (Kaplan–Violante–Weidner style). Both are ratios of weighted means—same NIG numerator as the income charts, different denominators. Use these when \(NIG\)/NW breaks for Q1 (near-zero/negative NW) or \(NIG\)/income inflates Q5. Period and annualized companions: `nig_over_*_by_quintile_periods*.png`, `*_1999_2023_annualized.png`.
+
 ### Debt / assets by wealth quintile
 
 ![Debt-to-asset ratio by wealth quintile](../output/figures/debt_asset_by_quintile.png)
@@ -259,6 +283,7 @@ Side-by-side: left = SFS balance-sheet \(NIG\)/income by tenure; right = SHS nec
 | Theme | Key tables |
 |-------|------------|
 | Annual / period NIG | `nig_by_year.csv`, `nig_by_year_wealth_quintile.csv`, `nig_by_period_wealth_quintile.csv`, `nig_by_quintile_1999_2023.csv` |
+| Annualized period NIG | `nig_by_period_wealth_quintile_annualized.csv`, `nig_by_quintile_1999_2023_annualized.csv`, `nig_annualized_by_quintile.csv` |
 | Sensitivity | `nig_inflation_sensitivity.csv` |
 | Inequality | `inequality_revaluation_by_period.csv`, `revaluation_contributions_by_period.csv`, `reval_by_quintile_by_period.csv` |
 | Interest rates (29392) | `revaluation_contribution_shares_by_period.csv`, `revaluation_vs_actual_growth_by_period.csv`, `revaluation_gini_shutoffs_by_period.csv`, `revaluation_by_age_period.csv` |
